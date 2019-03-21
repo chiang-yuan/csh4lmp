@@ -13,11 +13,11 @@ The computational modeling tool for custom atomistic model of calcium-silicate-h
 ```
 	-aw add [#] [typeO] [typeH]        
 ```
-  syntax | definition
-  ------ | ----------
-  \# | addition number of water molecules
-  typeO | added oxygen type
-  typeH | added hydrogen type
+	syntax | definition
+	------ | ----------
+	\# | addition number of water molecules
+	typeO | added oxygen type
+	typeH | added hydrogen type
 
 - __delete water__
 ```
