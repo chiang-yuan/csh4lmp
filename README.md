@@ -8,9 +8,20 @@ The computational modeling tool for custom atomistic model of calcium-silicate-h
 
 # Command
 
+- __add water__
+
 ```
-	-add water      |    -aw add [#] [typeO] [typeH]                
-	-delete water   |    -dw delete [typeO] [typeH]                 
+	-aw add [#] [typeO] [typeH]        
+```
+  syntax | definition
+  ------ | ----------
+  \# | addition number of water molecules
+  typeO | added oxygen type
+  typeH | added hydrogen type
+
+- __delete water__
+```
+	-dw delete [typeO] [typeH]                 
 	-remove SiO2    |    -s number [typeSi] [#] [BT/PT ratio]
 	-add H          |    -h valence (n/#) [typeO] [typeH] [typeO-H] 
 	-delete atom    |    -d delete atom type [type]                 
