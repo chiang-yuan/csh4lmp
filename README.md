@@ -4,7 +4,7 @@ The computational modeling tool for custom atomistic model of calcium-silicate-h
 ![Removal Regime](/image/cutting_1.75_l.png)
 Removing regime to generate higher Ca/Si ratio. The atoms in gray color are removed in neutral SiO2 groups including one silicon, one bridging and one hydroxyl oxygen as an example marked in yellow circle. Green, purple and orange rectangular represent dimer, pentamer and octamer respectively.
 
-[Chiang Yuan](www.linkedin.com/in/yuanchiang) 2018 @ NTUCE
+[Chiang Yuan](www.linkedin.com/in/yuanchiang) Mar/2019 @ NTUCE
 
 # Build
 
