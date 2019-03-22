@@ -13,7 +13,7 @@ Removing regime to generate higher Ca/Si ratio. The atoms in gray color are remo
 
 # Command
 
-- __add water__
+- __add water__ : add water molecules to current model
 
 ```
 	-aw add [#] [typeO] [typeH]        
@@ -24,13 +24,49 @@ syntax | definition
 typeO | added oxygen type
 typeH | added hydrogen type
 
-- __delete water__
+- __delete water__ : remove all of water molecules
 ```
-	-dw delete [typeO] [typeH]                 
-	-remove SiO2    |    -s number [typeSi] [#] [BT/PT ratio]
-	-add H          |    -h valence (n/#) [typeO] [typeH] [typeO-H] 
-	-delete atom    |    -d delete atom type [type]                 
-	-delete bond    |    -d delete bond type [type]                 
+	-dw delete [typeO] [typeH]
 ```
+syntax | definition
+------ | ----------
+typeO | removed oxygen type in water molecules
+typeH | removed hydrogen type in water molecules
+
+- __remove SiO2__ : remove multiple silicate units from current models
+```
+	-s number [typeSi] [#] [BT/PT ratio]
+```
+syntax | definition
+------ | ----------
+typeSi | removed oxygen type in water molecules
+\# | removal number of silicate units
+BT/PT ratio | ratio of removal number of bridging tetrahedra (BT) to pairing tetrahedra (PT)
+
+- __add H__ : append multiple hydrogen to undercoordinated oxygen
+```
+	-h valence (n/#) [typeO] [typeH] [typeO-H] 
+```
+syntax | definition
+------ | ----------
+n/\# | _n_ : append hydrogen to meet electroneutrality / number of appended hydrogen
+typeO | atom type of oxygen to be bonded
+typeH | atom type of hydrogen to be added
+typeO-H | bond type of new bonds between O and H
+
+- __delete atom__ : delete atoms with specific type
+```
+	-d delete atom type [type]
+```
+syntax | definition
+------ | ----------
+type | atom type of atoms to be deleted
+- __delete bond__ :
+```
+	-d delete bond type [type]                 
+```
+syntax | definition
+------ | ----------
+type | bond type of bonds to be deleted
 # License
 MIT
