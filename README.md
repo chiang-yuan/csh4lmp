@@ -14,6 +14,16 @@ make
 
 # Command
 
+- __I/O__ : input and output of LAMMPS data file
+
+**_input_**
+```
+	< [input file name]
+```
+**_output_**
+```
+	> [output file name] hint (y/n)
+```
 - __add water__ : add water molecules to current model
 
 ```
@@ -43,6 +53,10 @@ syntax | definition
 typeSi | removed oxygen type in water molecules
 \# | removal number of silicate units
 BT/PT ratio | ratio of removal number of bridging tetrahedra (BT) to pairing tetrahedra (PT)
+
+The example of effect of BT/PT removal ratio on the Qn factors
+![BT/PT](/image/1.75.jpg)
+
 
 - __add H__ : append multiple hydrogen to undercoordinated oxygen
 ```
