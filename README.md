@@ -55,7 +55,7 @@ typeSi | removed oxygen type in water molecules
 BT/PT ratio | ratio of removal number of bridging tetrahedra (BT) to pairing tetrahedra (PT)
 
 The example of effect of BT/PT removal ratio on the Qn factors
-![BT/PT](/image/1.75.jpg)
+![BT/PT](/image/1.57.jpg)
 
 
 - __add H__ : append multiple hydrogen to undercoordinated oxygen
