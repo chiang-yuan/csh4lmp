@@ -50,7 +50,7 @@ typeH | removed hydrogen type in water molecules
 ```
 syntax | definition
 ------ | ----------
-typeSi | removed oxygen type in water molecules
+typeSi | silicon type
 \# | removal number of silicate units
 BT/PT ratio | ratio of removal number of bridging tetrahedra (BT) to pairing tetrahedra (PT)
 
