@@ -29,6 +29,7 @@ protected:
 
 	virtual int add_atomtype(System & sys, char ele_[2], double mass_, char pot_[MAX_NAME], double coeff_[2]);
 	virtual int add_bondtype(System & sys, int ij_[2], double coeff_[2], char style_[MAX_NAME], char name_[MAX_NAME]);
+	virtual int add_angletype(System & sys, int ijk_[3], double coeff_[2], char style_[MAX_NAME], char name_[MAX_NAME]);
 	virtual int add_atoms(System & sys, std::vector<Atom> atoms_);
 	virtual int add_bonds(System & sys, std::vector<Bond> bonds_);
 	virtual int add_angles(System & sys, std::vector<Angle> angles_);

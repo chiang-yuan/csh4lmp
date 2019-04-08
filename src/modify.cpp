@@ -53,6 +53,21 @@ int Modify::add_bondtype(System & sys, int ij_[2], double coeff_[2], char style_
 	return sys.no_bond_types;
 }
 
+int Modify::add_angletype(System & sys, int ijk_[3], double coeff_[2], char style_[MAX_NAME], char name_[MAX_NAME])
+{
+	sys.angleTypes.resize(++sys.no_angle_types);
+
+	sys.angleTypes[sys.no_angle_types - 1].types[0] = ijk_[0];
+	sys.angleTypes[sys.no_angle_types - 1].types[1] = ijk_[1];
+	sys.angleTypes[sys.no_angle_types - 1].types[2] = ijk_[2];
+	sys.angleTypes[sys.no_angle_types - 1].coeff[0] = coeff_[0];
+	sys.angleTypes[sys.no_angle_types - 1].coeff[1] = coeff_[1];
+	strcpy(sys.angleTypes[sys.no_angle_types - 1].style, style_);
+	strcpy(sys.angleTypes[sys.no_angle_types - 1].name, name_);
+
+	return sys.no_angle_types;
+}
+
 int Modify::add_atoms(System & sys, std::vector<Atom> atoms_)
 {
 	int num = 0;
@@ -963,20 +978,45 @@ Initialize::~Initialize()
 int Initialize::command(System & sys)
 {
 
-	int typeO = 1; strcpy(sys.atomTypes[typeO - 1].element, "O"); sys.atomTypes[typeO - 1].mass = 15.999;
-	int typeCa = 2; strcpy(sys.atomTypes[typeCa - 1].element, "Ca"); sys.atomTypes[typeCa - 1].mass = 40.078;
-	int typeSi = 3; strcpy(sys.atomTypes[typeSi - 1].element, "Si"); sys.atomTypes[typeSi - 1].mass = 28.085;
+	strcpy(sys.atomTypes[typeO - 1].element, "O"); sys.atomTypes[typeO - 1].mass = 15.999;
+	strcpy(sys.atomTypes[typeCa - 1].element, "Ca"); sys.atomTypes[typeCa - 1].mass = 40.078;
+	strcpy(sys.atomTypes[typeSi - 1].element, "Si"); sys.atomTypes[typeSi - 1].mass = 28.085;
 	
-	int typeH = 4; 
 	if (typeH > sys.no_atom_types)
 		typeH = add_atomtype(sys, (char*)"H", 1.00794, (char*)"lj/cut/coul/long", new double[2]{ 0, 0 });
-	else strcpy(sys.atomTypes[typeH - 1].element, "H"); sys.atomTypes[typeH - 1].mass = 1.00794;
+	else {
+		strcpy(sys.atomTypes[typeH - 1].element, "H");
+		sys.atomTypes[typeH - 1].mass = 1.00794;
+	}
 
-	int typeOh = 5; typeOh = add_atomtype(sys, (char*)"Oh", 15.999, (char*)"lj/cut/coul/long", new double[2]{ 0, 0 });
-	int typeOw = 6; typeOw = add_atomtype(sys, (char*)"Ow", 15.999, (char*)"lj/cut/coul/long", new double[2]{ 0, 0 });
-	int typeCw = 7; typeCw = add_atomtype(sys, (char*)"Cw", 40.078, (char*)"lj/cut/coul/long", new double[2]{ 0, 0 });
-	int typeHw = 8; typeHw = add_atomtype(sys, (char*)"Hw", 1.00794, (char*)"lj/cut/coul/long", new double[2]{ 0, 0 });
+	if (typeOh > sys.no_atom_types)
+		typeOh = add_atomtype(sys, (char*)"Oh", 15.999, (char*)"lj/cut/coul/long", new double[2]{ 0, 0 });
+	else {
+		strcpy(sys.atomTypes[typeOh - 1].element, "Oh");
+		sys.atomTypes[typeOh - 1].mass = 15.999;
+	}
 
+	if (typeOw > sys.no_atom_types)
+		typeOw = add_atomtype(sys, (char*)"Ow", 15.999, (char*)"lj/cut/coul/long", new double[2]{ 0, 0 });
+	else {
+		strcpy(sys.atomTypes[typeOw - 1].element, "Ow");
+		sys.atomTypes[typeOw - 1].mass = 15.999;
+	}
+
+	if (typeCw > sys.no_atom_types)
+		typeCw = add_atomtype(sys, (char*)"Cw", 40.078, (char*)"lj/cut/coul/long", new double[2]{ 0, 0 });
+	else {
+		strcpy(sys.atomTypes[typeCw - 1].element, "Cw");
+		sys.atomTypes[typeCw - 1].mass = 15.999;
+	}
+	
+	if (typeHw > sys.no_atom_types)
+		typeHw = add_atomtype(sys, (char*)"Hw", 1.00794, (char*)"lj/cut/coul/long", new double[2]{ 0, 0 });
+	else {
+		strcpy(sys.atomTypes[typeHw - 1].element, "Hw");
+		sys.atomTypes[typeHw - 1].mass = 1.00794;
+	}
+	
 	for (std::vector<Atom>::iterator a = sys.atoms.begin(); a != sys.atoms.end(); ++a) {
 
 		/***** type 1 : O , type 5 : Oh and type 6 : Ow *****/
@@ -1113,11 +1153,16 @@ int Initialize::command(System & sys)
 	}
 
 	int type_Hw_Ow_Hw = 1;
-	sys.angleTypes[type_Hw_Ow_Hw - 1].types[0] = typeHw;
-	sys.angleTypes[type_Hw_Ow_Hw - 1].types[1] = typeOw;
-	sys.angleTypes[type_Hw_Ow_Hw - 1].types[2] = typeHw;
-	strcpy(sys.angleTypes[type_Hw_Ow_Hw - 1].name, "Hw-Ow-Hw");
-	strcpy(sys.angleTypes[type_Hw_Ow_Hw - 1].style, "harmonic");
+	if (type_Hw_Ow_Hw > sys.no_angle_types)
+		type_Hw_Ow_Hw = add_angletype(sys, new int[3]{ typeHw,typeOw,typeHw }, new double[2]{ 0,0 }, (char*)"harmonic", (char*)"Hw-Ow-Hw");
+	else {
+		sys.angleTypes[type_Hw_Ow_Hw - 1].types[0] = typeHw;
+		sys.angleTypes[type_Hw_Ow_Hw - 1].types[1] = typeOw;
+		sys.angleTypes[type_Hw_Ow_Hw - 1].types[2] = typeHw;
+		strcpy(sys.angleTypes[type_Hw_Ow_Hw - 1].name, "Hw-Ow-Hw");
+		strcpy(sys.angleTypes[type_Hw_Ow_Hw - 1].style, "harmonic");
+	}
+	
 
 	/*
 	int type_O_Si_O = 2;

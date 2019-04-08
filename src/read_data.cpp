@@ -392,17 +392,20 @@ int ReadData::over(char* filename_, System & sys)
 						}
 					}
 
-					bigint iid = atoi(values[0]);
-					int imolecule = atoi(values[1]);
-					int itype = atoi(values[2]);
-					double iq = atof(values[3]);
-					double ix = atof(values[4]);
-					double iy = atof(values[5]);
-					double iz = atof(values[6]);
-					double inx = atof(values[7]);
-					double iny = atof(values[8]);
-					double inz = atof(values[9]);
-					char iname[MAX_NAME]; strcpy(iname, values[10]);
+					int n = 0;
+
+					bigint iid = atoi(values[n++]);
+					int imolecule = atoi(values[n++]);
+					int itype = atoi(values[n++]);
+					double iq = atof(values[n++]);
+					double ix = atof(values[n++]);
+					double iy = atof(values[n++]);
+					double iz = atof(values[n++]);
+					double inx = atof(values[n++]);
+					double iny = atof(values[n++]);
+					double inz = atof(values[n++]);
+					char iname[MAX_NAME]; 
+					if (n < nwords - 1) strcpy(iname, values[n++]);
 
 					sys.atoms[iid - 1].id = iid;
 					sys.atoms[iid - 1].molecule = imolecule;
