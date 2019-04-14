@@ -9,8 +9,9 @@
  *
  *	DEPENDENCY
  *
- *  Copyright version 5.3 (12/Mar/2019) Chiang Yuan
+ *  Copyright version 5.4 (12/Apr/2019) Chiang Yuan
  *
+ *		v_5.4	|	adjust initialization
  *		v_5.3	|	adjust topology & charge balnce
  *		v_5.2	|	Bugfix
  *		v_5.1	|	establish two modes deleting SiO2 and two modes add H
@@ -30,13 +31,17 @@
 #define _CRT_SECURE_NO_WARNINGS
 #endif
 
-#include "system.h"
-#include "read_data.h"
-#include "modify.h"
-#include "write_data.h"
-#include "affine_transform.h"
-#include "error.h"
 #include "stl2lmp.h"
+#include "system.h"
+#include "error.h"
+#include "read_data.h"
+#include "write_data.h"
+
+#include "modify.h"
+#include "change_box.h"
+
+#include "affine_transform.h"
+
 
 using namespace std;
 
@@ -74,21 +79,29 @@ bool check_arg(char **arg, const char *flag, int num, int argc) {
 }
 
 int main(int argc, char *argv[]) {
+
+	// system
+
 	Error error;
 	System sys(&error);
 	ReadData reader(&error);
 	WriteData writer(&error);
 
-	Topology topo(&error);
+	// modifier
+
 	Initialize init(&error);
+	Topology topo(&error);
 	AddH2O addH2O(&error);
 	ModifyH2O rmH2O(&error);
 	ModifySiO2 rmSiO2(&error);
 	ModifyH addH(&error);
+	Modify delt(&error);
+
+	ChangeBox p2m(&error);
+
+	// temporary
 
 	AffineTransform rot(&error);
-
-	Modify delOSi(&error);
 
 	if (argc < 2) {
 		printf("\n\t¢z                                                                     ¢{\n");
@@ -220,11 +233,24 @@ int main(int argc, char *argv[]) {
 					commd[i] = argv[n];
 				}
 
-				printf("Modify::command(): %d\n", delOSi.command(ncomm, commd, sys));
+				printf("Modify::command(): %d\n", delt.command(ncomm, commd, sys));
 
 				cout << sys;
 			}
 
+			if (strncmp(argv[n], "-c", 2) == 0) {
+				int ncomm = 4;
+				char** commd = new char*[ncomm];
+
+				for (int i = 0; i < ncomm; i++) {
+					n++;
+					if (!check_arg(argv, "change_box", n, argc)) return error.message("", 9);
+					commd[i] = argv[n];
+				}
+
+				printf("ChangeBox::command(): %d\n", p2m.command(ncomm, commd, sys));
+
+			}
 
 			if (strncmp(argv[n], ">", 1) == 0) {
 				int ncomm = 3;
@@ -346,7 +372,7 @@ int main(int argc, char *argv[]) {
 					commd[i] = argv[n];
 				}
 
-				printf("Modify::command(): %d\n", delOSi.command(ncomm, commd, sys));
+				printf("Modify::command(): %d\n", delt.command(ncomm, commd, sys));
 
 				cout << sys;
 			}

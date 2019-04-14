@@ -61,6 +61,7 @@ public:
 	int typeOw = 6;
 	int typeCw = 7; 
 	int typeHw = 8;
+	int typeOb = 9;
 	
 	int type_Ow_Hw = 1;
 	int type_Oh_H = 2;

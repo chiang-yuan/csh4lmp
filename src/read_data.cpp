@@ -33,7 +33,9 @@ int ReadData::read_section(FILE * file_, int nrows_, int ncolumns_, char * buffe
 	// EOL
 	if (m) {
 		if (buffer_[m - 1] != '\n') strcpy(&buffer_[m++], "\n");
-		m++;
+		
+		m = m + 1;
+
 	}
 
 	if (m == 0) return 1;
@@ -193,11 +195,12 @@ int ReadData::over(char* filename_, System & sys)
 				double imass;
 				char ielement[MAX_NAME];
 
-				int n = sscanf(multibuffer, "%d %lg # %s", &itype, &imass, &ielement);
+				int n = sscanf(multibuffer, "%d %lg # %s", &itype, &imass, ielement);
+
 				if (n < 2 || n > 3) {
 					return error->message("Invalid mass data in data file",3);
 				}
-
+				
 				if (itype < 1 || itype > sys.no_atom_types) {
 					return error->message("Invalid atom type for setting mass",4);
 				}
@@ -235,7 +238,7 @@ int ReadData::over(char* filename_, System & sys)
 				double isigma;
 				char iname[MAX_NAME];
 
-				int n = sscanf(multibuffer, "%d %lg %lg # %s", &itype, &iepsilon, &isigma, &iname);
+				int n = sscanf(multibuffer, "%d %lg %lg # %s", &itype, &iepsilon, &isigma, iname);
 				if (n < 3) {
 					return error->message("Invalid pair coeffs data in data file",6);
 				}
@@ -280,7 +283,7 @@ int ReadData::over(char* filename_, System & sys)
 				double ia0;
 				char iname[MAX_NAME];
 
-				int n = sscanf(multibuffer, "%d %lg %lg # %s", &itype, &ik, &ia0, &iname);
+				int n = sscanf(multibuffer, "%d %lg %lg # %s", &itype, &ik, &ia0, iname);
 				if (n < 3) {
 					return error->message("Invalid bond data in data file",9);
 				}
@@ -291,8 +294,7 @@ int ReadData::over(char* filename_, System & sys)
 
 				sys.bondTypes[itype - 1].coeff[0] = ik;
 				sys.bondTypes[itype - 1].coeff[1] = ia0;
-				strcpy(sys.bondTypes[itype - 1].name, iname
-);
+				strcpy(sys.bondTypes[itype - 1].name, iname);
 				strcpy(sys.bondTypes[itype - 1].style, style);
 
 				multibuffer = iter + 1;
@@ -325,7 +327,7 @@ int ReadData::over(char* filename_, System & sys)
 				double ia0;
 				char iname[MAX_NAME];
 
-				int n = sscanf(multibuffer, "%d %lg %lg # %s", &itype, &iK, &ia0, &iname);
+				int n = sscanf(multibuffer, "%d %lg %lg # %s", &itype, &iK, &ia0, iname);
 				if (n < 3) {
 					return error->message("Invalid angle data in data file", 9);
 				}

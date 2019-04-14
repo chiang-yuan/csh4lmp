@@ -623,6 +623,7 @@ int ModifySiO2::randomly_remove_SiO2(System & sys, int typeSi_, int num_, double
 		hydroxyl[rand() % hydroxyl.size()]->delete_flag = true;
 		
 		// Mode 2 : delete two hydroxyl oxygen
+
 		/*
 		if (hydroxyl.size() != 2) {
 			group_BT_Si.erase(group_BT_Si.begin() + idel);
@@ -641,6 +642,7 @@ int ModifySiO2::randomly_remove_SiO2(System & sys, int typeSi_, int num_, double
 
 		(*delSi).delete_flag = true;
 		group_BT_Si.erase(group_BT_Si.begin() + idel);
+
 		num_del++;
 	}
 
@@ -698,6 +700,8 @@ int ModifySiO2::randomly_remove_SiO2(System & sys, int typeSi_, int num_, double
 
 		(*delSi).delete_flag = true;
 		group_PT_Si.erase(group_PT_Si.begin() + idel);
+		
+		//num_del = num_del + 1;
 		num_del++;
 	}
 
@@ -817,10 +821,37 @@ int Topology::command(System & sys)
 
 	for (std::vector<Atom>::iterator a = sys.atoms.begin(); a != sys.atoms.end(); ++a) {
 		
-		/***** type 1 : O , type 5 : Oh and type 6 : Ow *****/
-		if (a->type == typeO || a->type == typeOh || a->type == typeOw) {
+		/***** type 1 : O , type 5 : Oh , type 6 : Ow and type 9 : Ob *****/
+		if (a->type == typeO || a->type == typeOh || a->type == typeOw || a->type == typeOb) {
 			if (a->type == typeO) a->q = -1.14;
-			if (a->type == typeOh) a->q = -1.00;
+			if (a->type == typeOh) {
+				a->q = -1.00;
+
+				// categorize oxygen near intralayer as O
+
+				double r = 0.5;
+				std::vector<Atom*> neigh;
+				for (std::vector<Atom>::iterator j = sys.atoms.begin(); j != sys.atoms.end(); ++j) {
+					if (pow((*j).x[2] - (*a).x[2], 2) < pow(r, 2)) {
+						neigh.push_back(&*j);
+					}
+				}
+
+				bool intra = false;
+				for (std::vector<Atom*>::iterator n = neigh.begin(); n != neigh.end(); ++n) {
+					if ((*n)->type == typeCa) {
+						intra = true;
+						break;
+					}
+				}
+				neigh.clear();
+
+				if (intra) {
+					a->type = typeO;
+					a->q = -1.14;
+				}
+
+			}
 		}
 
 		/***** type 2 : Ca and type 7 : Cw *****/
@@ -1016,28 +1047,44 @@ int Initialize::command(System & sys)
 		strcpy(sys.atomTypes[typeHw - 1].element, "Hw");
 		sys.atomTypes[typeHw - 1].mass = 1.00794;
 	}
+
+	if (typeOb > sys.no_atom_types)
+		typeOb = add_atomtype(sys, (char*)"Ob", 15.999, (char*)"lj/cut/coul/long", new double[2]{ 0, 0 });
+	else {
+		strcpy(sys.atomTypes[typeOb - 1].element, "Ob");
+		sys.atomTypes[typeOb - 1].mass = 15.999;
+	}
 	
 	for (std::vector<Atom>::iterator a = sys.atoms.begin(); a != sys.atoms.end(); ++a) {
 
 		/***** type 1 : O , type 5 : Oh and type 6 : Ow *****/
-		if (a->type == typeO || a->type == typeOh || a->type == typeOw) {
+		if (a->type == typeO || a->type == typeOh || a->type == typeOw || a->type == typeOb) {
 			if (a->bondNum == 1) {
 				a->type = typeOh;
 				a->q = -1.00;
 			}
 			else
 			{
+				int no_bridge_si = 0;
 				for (int i = 0; i < a->bondNum; i++) {
 					if (a->bonds[i]->ij[0]->type == typeH || a->bonds[i]->ij[1]->type == typeH) {
 						a->type = typeOw;
 						a->q = -0.82;
 						break;
 					}
-					else if (a->bonds[i]->ij[0]->type == typeSi || a->bonds[i]->ij[1]->type == typeSi) {
-						a->type = typeO;
-						a->q = -1.14;
+					else if (a->bonds[i]->connected(&*a)->type == typeSi) {
+						no_bridge_si++;
+						if (no_bridge_si == 1) {
+							a->type = typeO;
+							a->q = -1.14;
+						}
+						else if (no_bridge_si == 2) {
+							a->type = typeOb;
+							a->q = -1.14;
+						}
 					}
 				}
+				
 			}
 
 		}
@@ -1310,7 +1357,7 @@ int ModifyH::add_to_number(System & sys, int num_, int typeO_, int typeH_, int t
 
 		}
 	}
-	else if (typeO_ == typeO) {
+	else if (typeO_ == typeOb) {
 		for (std::vector<Atom>::iterator a = sys.atoms.begin(); a != sys.atoms.end(); ++a) {
 
 			// Mode 1 : add at oxygen with coordination number equal to 0
@@ -1717,8 +1764,8 @@ int AddH2O::add_type(System & sys, int num_, int typeOw_, int typeHw_)
 	}
 
 	printf("\n\tCa/Si = %4.2f | H2O/Si = %4.2f\n\n", 
-		group_Ca_Cw.size() / (double)group_Si.size(),
-		num_add / (double)group_Si.size());
+		group_Ca_Cw.size() / (double)(group_Si.size()),
+		num_add / (double)(group_Si.size()));
 
 	/*
 	FILE* nmr = fopen("NMR.txt", "a");

@@ -99,13 +99,19 @@ int WriteData::write(char * filename_, int hint_flag, System & sys)
 	// Section : Masses
 	fprintf(file, "\nMasses\n\n");
 	for (int i = 0; i < sys.no_atom_types; i++) {
-		fprintf(file, " %3d %10.6f # %s\n", i + 1, sys.atomTypes[i].mass, sys.atomTypes[i].element);
+		fprintf(file, " %3d %10.6f", i + 1, sys.atomTypes[i].mass);
+
+		if (hint_flag) fprintf(file, " # %s\n",	sys.atomTypes[i].element);
+		else fprintf(file, "\n");
 	}
 
 	// Section : Pair Coeffs
 	fprintf(file, "\nPair Coeffs\n\n");
 	for (int i = 0; i < sys.no_atom_types; i++) {
-		fprintf(file, " %3d %14.10f %14.10f # %s\n", i + 1, sys.atomTypes[i].coeff[0], sys.atomTypes[i].coeff[1], sys.atomTypes[i].element);
+		fprintf(file, " %3d %14.10f %14.10f", i + 1, sys.atomTypes[i].coeff[0], sys.atomTypes[i].coeff[1]);
+
+		if (hint_flag) fprintf(file, " # %s\n", sys.atomTypes[i].element);
+		else fprintf(file, "\n");
 	}
 
 	// Section : Bond Coeffs
