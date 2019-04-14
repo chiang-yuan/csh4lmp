@@ -83,5 +83,14 @@ type | atom type of atoms to be deleted
 syntax | definition
 ------ | ----------
 type | bond type of bonds to be deleted
+- __change box__ :
+```
+	-c boundary [pbcx] [pbc] [pbcz]                 
+```
+syntax | definition
+------ | ----------
+pbcx pbcy pbcz | periodic boundary condition in x y z direction = p (periodic), m (non-periodic)
+
+This command will reset the image flag consistent and migrate the atoms whose bonds across boundary
 # License
 MIT
