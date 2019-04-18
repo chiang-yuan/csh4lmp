@@ -925,9 +925,13 @@ int Topology::command(System & sys)
 			b->ij[0]->type == typeH && b->ij[1]->type == typeOh) 
 			b->type = type_Oh_H;
 
-		// bond type 3 : O-Si
+		// bond type 3 : O-Si Ob-Si
 		if (b->ij[0]->type == typeSi && b->ij[1]->type == typeO ||
 			b->ij[0]->type == typeO && b->ij[1]->type == typeSi) {
+			b->type = type_O_Si;
+		}
+		if (b->ij[0]->type == typeSi && b->ij[1]->type == typeOb ||
+			b->ij[0]->type == typeOb && b->ij[1]->type == typeSi) {
 			b->type = type_O_Si;
 		}
 
@@ -1344,7 +1348,24 @@ int ModifyH::add_to_number(System & sys, int num_, int typeO_, int typeH_, int t
 
 	std::vector<Atom*> group_O;
 
-	if (typeO_ == typeOh) {
+	if (typeO_ == typeO) {
+		for (std::vector<Atom>::iterator a = sys.atoms.begin(); a != sys.atoms.end(); ++a) {
+
+			// Mode 1 : add at oxygen with coordination number equal to 0
+
+			if ((*a).type == typeO_ && (*a).bondNum == 0) {
+				a->type = typeOh;
+				a->q = -1.00;
+				group_O.push_back(&*a);
+			}
+
+			// Mode 2 : add at bridging oxygen with coordination number less than 2
+
+			//if ((*a).type == typeO_ && (*a).bondNum < 2) group_O.push_back(&*a);
+
+		}
+	}
+	else if (typeO_ == typeOh) {
 		for (std::vector<Atom>::iterator a = sys.atoms.begin(); a != sys.atoms.end(); ++a) {
 
 			// Mode 1 : add at oxygen with coordination number equal to 0
@@ -1468,7 +1489,7 @@ int ModifyH::add_to_number(System & sys, int num_, int typeO_, int typeH_, int t
 	if (num_add < num_) error->warning("Not all of type %s atoms being added", 2, std::to_string(typeH_).c_str());
 
 	// Balance excess charge
-	std::vector<int> dis_atom{ typeO, typeOh };
+	std::vector<int> dis_atom{ typeO, typeOh, typeOb };
 	printf("Modify::neutralize(): %d\n", neutralize(sys, dis_atom));
 
 	return 0;
