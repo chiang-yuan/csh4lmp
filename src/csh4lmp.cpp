@@ -377,6 +377,20 @@ int main(int argc, char *argv[]) {
 				cout << sys;
 			}
 
+			if (strncmp(argv[n], "-c", 2) == 0) {
+				int ncomm = 4;
+				char** commd = new char*[ncomm];
+
+				for (int i = 0; i < ncomm; i++) {
+					n++;
+					if (!check_arg(argv, "change_box", n, argc)) return error.message("", 9);
+					commd[i] = argv[n];
+				}
+
+				printf("ChangeBox::command(): %d\n", p2m.command(ncomm, commd, sys));
+
+			}
+
 
 			if (strncmp(argv[n], ">", 1) == 0) {
 				int ncomm = 3;
