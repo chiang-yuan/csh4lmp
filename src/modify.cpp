@@ -461,6 +461,8 @@ int Modify::command(int argc, char * argv[], System & sys)
 	return 0;
 }
 
+/*
+
 ModifyH2O::ModifyH2O(Error * error_) : Topology(error_)
 {
 	error = error_;
@@ -530,6 +532,8 @@ int ModifyH2O::delete_type(System & sys, int typeOw_, int typeHw_)
 
 	return ndelete;
 }
+
+*/
 
 ModifySiO2::ModifySiO2(Error * error_) : Topology(error_)
 {
@@ -766,9 +770,17 @@ int ModifySiO2::NMR(System & sys, int type_)
 {
 	// NMR analysis
 	double Q[3]{ 0,0,0 };
+	
+	int num_Ca = 0;
+	int num_Si = 0;
+
 	for (std::vector<Atom>::iterator a = sys.atoms.begin(); a != sys.atoms.end(); ++a) {
+		if (a->type == typeCa || a->type == typeCw) num_Ca++;
+		else if (a->type == typeSi) num_Si++;
+		
 		if (a->type == type_) {
 			int cntbrid = 0;
+
 			for (int i = 0; i < a->bondNum; i++) {
 				Atom* bondAtom = &*a;
 
@@ -783,17 +795,32 @@ int ModifySiO2::NMR(System & sys, int type_)
 		}
 	}
 
-	printf("-------------Theoretical NMR Spectrum-------------\n\tQ0: %5.2f | Q1: %5.2f | Q2: %5.2f\n--------------------------------------------------\n"
+	printf("-----Intensity Deconvolution of 29Si NMR Spectrum-----\n\t\tQ0: %5.2f | Q1: %5.2f | Q2: %5.2f\n------------------------------------------------------\n"
 		, Q[0] / (Q[0] + Q[1] + Q[2])
 		, Q[1] / (Q[0] + Q[1] + Q[2])
 		, Q[2] / (Q[0] + Q[1] + Q[2]));
+
+	double mcl = 2.0 / (Q[1] / (Q[1] + Q[2]));
+
+	printf("Mean Chain Length: %5.2f\n", mcl);
+
+	double cs = static_cast<double>(num_Ca) / static_cast<double>(num_Si);
+	double upper = static_cast<double>(2.5 * cs - 2.0) / (cs - 1.0);
+	double lower = static_cast<double>(2.0 * cs - 1.75) / (cs - 1.0);
+
+	if (mcl > upper)
+		error->warning("Unreasonable mean chain length exceeds upper bound: %s\n", 0, std::to_string(upper).c_str());
+	
+	else if (mcl < lower)
+		error->warning("Unreasonable mean chain length exceeds lower bound: %s\n", 1, std::to_string(lower).c_str());
+
 
 	FILE* nmr = fopen("NMR.txt", "a");
 	fprintf(nmr, "\t%6.3f\t%6.3f\t%6.3f\t%4.2f\n",
 		Q[0] / (Q[0] + Q[1] + Q[2]),
 		Q[1] / (Q[0] + Q[1] + Q[2]),
 		Q[2] / (Q[0] + Q[1] + Q[2]),
-		2.0 / (Q[1] / (Q[1] + Q[2])));
+		mcl);
 
 	return 0;
 }
@@ -832,7 +859,9 @@ int Topology::command(System & sys)
 				double r = 0.5;
 				std::vector<Atom*> neigh;
 				for (std::vector<Atom>::iterator j = sys.atoms.begin(); j != sys.atoms.end(); ++j) {
-					if (pow((*j).x[2] - (*a).x[2], 2) < pow(r, 2)) {
+					if (pow((*j).x[2] - (*a).x[2], 2) < pow(r, 2) ||
+						pow((*j).x[2] + sys.box[2][1] - sys.box[2][0] - (*a).x[2], 2) < pow(r, 2) ||
+						pow((*j).x[2] - sys.box[2][1] + sys.box[2][0] - (*a).x[2], 2) < pow(r, 2)) {
 						neigh.push_back(&*j);
 					}
 				}

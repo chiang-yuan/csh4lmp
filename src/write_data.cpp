@@ -52,13 +52,22 @@ bool WriteData::check_arg(char ** arg, const char * flag, int num, int argc)
 
 int WriteData::write(char * filename_, int hint_flag, System & sys)
 {
-	// reset image flag
-	for (std::vector<Atom>::iterator a = sys.atoms.begin(); a != sys.atoms.end(); ++a) {
-		a->n[0] = 0;
-		a->n[1] = 0;
-		a->n[2] = 0;
-	}
+	/*
+	double cellvectors[3][3] = { {sys.box[0][1] - sys.box[0][0], 0 , 0},
+							 {sys.box[2][2], sys.box[1][1] - sys.box[1][0] ,0},
+							 {sys.box[1][2], sys.box[0][2] , sys.box[2][1] - sys.box[2][0]} };
 
+	// make image consistent
+
+	for (int i = 0; i < 3; i++) {
+		for (std::vector<Atom>::iterator a = sys.atoms.begin(); a != sys.atoms.end(); ++a) {
+			a->x[i] += (cellvectors[i][0] * a->n[0] + cellvectors[i][1] * a->n[1] + cellvectors[i][2] * a->n[2]);
+			a->n[0] = 0;
+			a->n[1] = 0;
+			a->n[2] = 0;
+		}
+	}
+	*/
 
 	sprintf(buffer, "%s", filename_);
 	file = fopen(buffer, "w");

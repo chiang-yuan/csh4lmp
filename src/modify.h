@@ -39,6 +39,7 @@ protected:
 	virtual int delete_type(System &sys, int type_);
 	virtual int delete_bond_type(System &sys, int type_);
 	
+	
 	virtual int neutralize(System &sys, std::vector<int> types_);
 private:
 
@@ -116,7 +117,6 @@ private:
 	int add_type(System &sys, int num_, int typeOw_, int typeHw_);
 };
 
-
 class ModifySiO2 : public Topology
 {
 public:
@@ -129,6 +129,5 @@ private:
 	int randomly_remove_type(System &sys, int type_, int num_);
 	int NMR(System & sys, int type_);
 };
-
 
 #endif // !MODIFY_H

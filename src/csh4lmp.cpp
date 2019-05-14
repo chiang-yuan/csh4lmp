@@ -9,8 +9,9 @@
  *
  *	DEPENDENCY
  *
- *  Copyright version 5.4 (12/Apr/2019) Chiang Yuan
+ *  Copyright version 5.6 (15/May/2019) Chiang Yuan
  *
+ *		v_5.6	|	add 29Si NMR check
  *		v_5.4	|	adjust initialization
  *		v_5.3	|	adjust topology & charge balnce
  *		v_5.2	|	Bugfix
@@ -120,7 +121,7 @@ int main(int argc, char *argv[]) {
 		printf("\t¢x     -delete atom    |    -d delete atom type [type]                 ¢x\n");
 		printf("\t¢x     -delete bond    |    -d delete bond type [type]                 ¢x\n");
 		printf("\t¢x                                                                     ¢x\n");
-		printf("\t¢|           2019/02  Chiang Yuan  (c)  All  Right  Reserved           ¢}\n\n");
+		printf("\t¢|                 Chiang Yuan  (c)  All  Right  Reserved              ¢}\n\n");
 		//printf("usage command: < (input file name) [-w delete type #] [-w add type #] [-s number (type#) #] [-h valence n/# (typeO) (typeH) (typeO-H)] [> (output file name) hint y/n]\n");
 		char* buffer = new char[MAX_STRING];
 		fgets(buffer, MAX_STRING, stdin);

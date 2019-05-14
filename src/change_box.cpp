@@ -32,8 +32,8 @@ int ChangeBox::command(int argc, char * argv[], System & sys)
 				if (strncmp(commd[i], "p", 1) == 0) {
 					xyz[i] = 1;
 				}
-				else if (strncmp(commd[i], "m", 1) == 0) {
-					xyz[i] = 4;
+				else if (strncmp(commd[i], "f", 1) == 0) {
+					xyz[i] = 2;
 				}
 				else return error->message("Unknown periodic boundary condition: %s", 2, commd[i]);
 			}
@@ -65,15 +65,13 @@ int ChangeBox::periodic_to_shrinkwarpped(System & sys, int xyz[3])
 
 	// make image consistent
 
-	for (int i = 0; i < 3; i++) {
-		if (xyz[i] == 4) {
-			for (std::vector<Atom>::iterator a = sys.atoms.begin(); a != sys.atoms.end(); ++a) {
-				a->x[i] += (cellvectors[i][0] * a->n[0] + cellvectors[i][1] * a->n[1] + cellvectors[i][2] * a->n[2]);
-				a->n[0] = 0;
-				a->n[1] = 0;
-				a->n[2] = 0;
-			}
+	for (std::vector<Atom>::iterator a = sys.atoms.begin(); a != sys.atoms.end(); ++a) {
+		for (int i = 0; i < 3; i++) {
+			a->x[i] += (cellvectors[0][i] * a->n[0] + cellvectors[1][i] * a->n[1] + cellvectors[2][i] * a->n[2]);
 		}
+		a->n[0] = 0;
+		a->n[1] = 0;
+		a->n[2] = 0;
 	}
 
 	// check bonds not cross boundary
@@ -85,10 +83,10 @@ int ChangeBox::periodic_to_shrinkwarpped(System & sys, int xyz[3])
 			b->ij[1]->x[2] - b->ij[0]->x[2] };
 
 		for (int i = 0; i < 3; i++) {
-			if (xyz[i] == 4) {
+			if (xyz[i] == 2) {
 				double proj = (vij[0] * cellvectors[i][0] + vij[1] * cellvectors[i][1] + vij[2] * cellvectors[i][2]) /
 					sqrtl(powl(cellvectors[i][0], 2) + powl(cellvectors[i][1], 2) + powl(cellvectors[i][2], 2));
-				
+
 				if (abs(proj) > sqrtl(powl(cellvectors[i][0], 2) + powl(cellvectors[i][1], 2) + powl(cellvectors[i][2], 2)) / 2.0) {
 					b->ij[1]->x[0] -= proj / abs(proj)*cellvectors[i][0];
 					b->ij[1]->x[1] -= proj / abs(proj)*cellvectors[i][1];
