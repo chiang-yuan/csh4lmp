@@ -6,17 +6,17 @@ Calcium-silicate-hydrates (C-S-H) is the main binding materials in the cement hy
 ![Removal Regime](/image/removal.jpg)
 This figure shows how to achieve higer Ca/Si ratio through removing silicate units. The atoms in gray color are removed in neutral SiO2 groups including one silicon atom and two oxgygen atoms. 
 __Nomenclature and Color Convention__
-Type | Name | Element | Color
----- | ---- | ------- | -----
-1 | O (oxygen) | oxygen | red
-2 | Ca (intralayer calcium) | calcium | blue
-3 | Si (silicon) | silicon | brown
-4 | H (hydrogen) | hydrogen | white
-5 | Oh (hydroxyl oxygen) | oxygen | yellow
-6 | Ow (oxygen in water) | oxygen | cyan
-7 | Cw (interlayer calcium) | calcium | magenta
-8 | Hw (hydrogen in water) | hydrogen | white
-9 | Ob (bridging oxygen) | oxygen | purple
+| Type | Name | Element | Color |
+| --- | --- | --- | --- |
+| 1 | O (oxygen) | oxygen | red |
+| 2 | Ca (intralayer calcium) | calcium | blue |
+| 3 | Si (silicon) | silicon | brown | 
+| 4 | H (hydrogen) | hydrogen | white |
+| 5 | Oh (hydroxyl oxygen) | oxygen | yellow |
+| 6 | Ow (oxygen in water) | oxygen | cyan |
+| 7 | Cw (interlayer calcium) | calcium | magenta |
+| 8 | Hw (hydrogen in water) | hydrogen | white |
+| 9 | Ob (bridging oxygen) | oxygen | purple |
 
 # Build
 
