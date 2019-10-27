@@ -71,7 +71,7 @@ typeSi | silicon type
 \# | removal number of silicate units
 BT/PT ratio | ratio of removal number of bridging tetrahedra (BT) to pairing tetrahedra (PT)
 
-The example of effect of BT/PT removal ratio on the Qn factors
+Effect of BT/PT removal ratio on the silicate connectivity indicated through Qn factors
 ![BT/PT](/image/1.57.jpg)
 
 
@@ -106,8 +106,8 @@ type | bond type of bonds to be deleted
 ```
 syntax | definition
 ------ | ----------
-pbcx pbcy pbcz | periodic boundary condition in x y z direction = p (periodic), m (non-periodic)
+pbcx pbcy pbcz | periodic boundary condition in x y z direction = p (periodic), f (non-periodic)
 
-This command will reset the image flag consistent and migrate the atoms whose bonds across boundary
+This command will reset and make the image flag consistent and traslate the atoms whose bonds across boundary
 # License
 MIT
