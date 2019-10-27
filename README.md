@@ -1,4 +1,4 @@
-# Introduciton
+# Introduction
 Calcium-silicate-hydrates (C-S-H) is the main binding materials in the cement hydrates. To dates, its atomistic configuration remains unclear and is under extensive discussion. [Nat. Comm.](https://doi.org/10.1038/ncomms5960) [ACS. JPCC.](https://doi.org/10.1021/acs.jpcc.7b02439) However, a straightforward model construction method is still absent and lack of handy tool to build the tailored compositions of C-S-H. __csh4lmp__ realized direct modeling through removing silciate units (SiO2), appending hydrogen (H) to form hydroxyl group, and inserting water molecules (H2O) based on the anhydrous supercell of mineral tobermorites. 
 
 ![Removal Regime](/image/Removal.png)
