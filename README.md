@@ -4,7 +4,9 @@ Calcium-silicate-hydrates (C-S-H) is the main binding materials in the cement hy
 
 [Chiang Yuan](www.linkedin.com/in/yuanchiang) Mar/2019 @ NTUCE
 
-![Removal Regime](/image/removal.jpg)
+![relaxation](/example/relaxation.gif)
+
+![removal regime](/image/removal.jpg)
 This figure shows how to achieve higer Ca/Si ratio through removing silicate units. The atoms in gray color are removed in neutral SiO2 groups including one silicon atom and two oxgygen atoms. 
 
 ## Nomenclature and Color Convention
