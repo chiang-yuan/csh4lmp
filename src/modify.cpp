@@ -599,50 +599,56 @@ int ModifySiO2::randomly_remove_SiO2(System & sys, int typeSi_, int num_, double
 		int idel = rand() % group_BT_Si.size();
 		Atom* delSi = &*group_BT_Si[idel];
 
-		std::vector<Atom*> bridging;
-		std::vector<Atom*> hydroxyl;
+		std::vector<Atom*> bo;
+		std::vector<Atom*> nbo;
 		for (int i = 0; i < delSi->bondNum; i++) {
 			if (*delSi->bonds[i]->ij[0] != *delSi) {
 				if (delSi->bonds[i]->ij[0]->bondNum == 1 && delSi->bonds[i]->ij[0]->delete_flag == false)
-					hydroxyl.push_back(&*(delSi->bonds[i]->ij[0]));
+					nbo.push_back(&*(delSi->bonds[i]->ij[0]));
 				else if (delSi->bonds[i]->ij[0]->bondNum == 2 && delSi->bonds[i]->ij[0]->delete_flag == false)
-					bridging.push_back(&*(delSi->bonds[i]->ij[0]));
+					bo.push_back(&*(delSi->bonds[i]->ij[0]));
 			}
 			else if (*delSi->bonds[i]->ij[1] != *delSi) {
 				if (delSi->bonds[i]->ij[1]->bondNum == 1 && delSi->bonds[i]->ij[1]->delete_flag == false)
-					hydroxyl.push_back(&*(delSi->bonds[i]->ij[1]));
+					nbo.push_back(&*(delSi->bonds[i]->ij[1]));
 				else if ((*delSi).bonds[i]->ij[1]->bondNum == 2 && delSi->bonds[i]->ij[1]->delete_flag == false)
-					bridging.push_back(&*(delSi->bonds[i]->ij[1]));
+					bo.push_back(&*(delSi->bonds[i]->ij[1]));
 			}
 		}
 
-		// Mode 1 : delete one bridging oxygen and one hydroxyl oxygen
+		// Mode 1 : delete one BO oxygen and one NBO oxygen
 		
-		if (bridging.size() == 0 || hydroxyl.size() == 0) {
+		
+
+		if (bo.size() == 0 || nbo.size() == 0) {
 			group_BT_Si.erase(group_BT_Si.begin() + idel);
 			continue;
 		}
 
-		bridging[rand() % bridging.size()]->delete_flag = true;
-		hydroxyl[rand() % hydroxyl.size()]->delete_flag = true;
+		bo[rand() % bo.size()]->delete_flag = true;
+		nbo[rand() % nbo.size()]->delete_flag = true;
 		
-		// Mode 2 : delete two hydroxyl oxygen
+		
+
+		// Mode 2 : delete two nbo oxygen
 
 		/*
-		if (hydroxyl.size() != 2) {
+
+		if (nbo.size() != 2) {
 			group_BT_Si.erase(group_BT_Si.begin() + idel);
 			continue;
 		}
 		
 		
-		hydroxyl[0]->delete_flag = true;
-		hydroxyl[1]->delete_flag = true;
+		nbo[0]->delete_flag = true;
+		nbo[1]->delete_flag = true;
+
 		*/
 
 		//
 
-		bridging.clear();
-		hydroxyl.clear();
+		bo.clear();
+		nbo.clear();
 
 		(*delSi).delete_flag = true;
 		group_BT_Si.erase(group_BT_Si.begin() + idel);
@@ -657,55 +663,55 @@ int ModifySiO2::randomly_remove_SiO2(System & sys, int typeSi_, int num_, double
 		int idel = rand() % group_PT_Si.size();
 		Atom* delSi = &*group_PT_Si[idel];
 
-		std::vector<Atom*> bridging;
-		std::vector<Atom*> hydroxyl;
+		std::vector<Atom*> bo;
+		std::vector<Atom*> nbo;
 		for (int i = 0; i < delSi->bondNum; i++) {
 			if (*delSi->bonds[i]->ij[0] != *delSi) {
 				if (delSi->bonds[i]->ij[0]->bondNum == 1 && delSi->bonds[i]->ij[0]->delete_flag == false)
-					hydroxyl.push_back(&*(delSi->bonds[i]->ij[0]));
+					nbo.push_back(&*(delSi->bonds[i]->ij[0]));
 				else if (delSi->bonds[i]->ij[0]->bondNum == 2 && delSi->bonds[i]->ij[0]->delete_flag == false)
-					bridging.push_back(&*(delSi->bonds[i]->ij[0]));
+					bo.push_back(&*(delSi->bonds[i]->ij[0]));
 			}
 			else if (*delSi->bonds[i]->ij[1] != *delSi) {
 				if (delSi->bonds[i]->ij[1]->bondNum == 1 && delSi->bonds[i]->ij[1]->delete_flag == false)
-					hydroxyl.push_back(&*(delSi->bonds[i]->ij[1]));
+					nbo.push_back(&*(delSi->bonds[i]->ij[1]));
 				else if ((*delSi).bonds[i]->ij[1]->bondNum == 2 && delSi->bonds[i]->ij[1]->delete_flag == false)
-					bridging.push_back(&*(delSi->bonds[i]->ij[1]));
+					bo.push_back(&*(delSi->bonds[i]->ij[1]));
 			}
 		}
 
-		// Mode 1 : delete one bridging oxygen and one hydroxyl oxygen
+		// Mode 1 : delete one bo oxygen and one nbo oxygen
 
-		
-		if (bridging.size() == 0 || hydroxyl.size() == 0) {
-			group_PT_Si.erase(group_PT_Si.begin() + idel);
-			continue;
-		}
-
-		bridging[rand() % bridging.size()]->delete_flag = true;
-		hydroxyl[rand() % hydroxyl.size()]->delete_flag = true;
-		
-
-		// Mode 2 : delete two hydroxyl oxygen
 		/*
-		if (hydroxyl.size() != 2) {
+		
+		if (bo.size() == 0 || nbo.size() == 0) {
+			group_PT_Si.erase(group_PT_Si.begin() + idel);
+			continue;
+		}
+
+		bo[rand() % bo.size()]->delete_flag = true;
+		nbo[rand() % nbo.size()]->delete_flag = true;
+		
+		*/
+
+		// Mode 2 : delete two nbo oxygen
+		
+		if (nbo.size() != 2) {
 			group_PT_Si.erase(group_PT_Si.begin() + idel);
 			continue;
 		}
 		
-		hydroxyl[0]->delete_flag = true;
-		hydroxyl[1]->delete_flag = true;
-		*/
+		nbo[0]->delete_flag = true;
+		nbo[1]->delete_flag = true;
 
 		//
 
-		bridging.clear();
-		hydroxyl.clear();
+		bo.clear();
+		nbo.clear();
 
 		(*delSi).delete_flag = true;
 		group_PT_Si.erase(group_PT_Si.begin() + idel);
 		
-		//num_del = num_del + 1;
 		num_del++;
 	}
 
@@ -770,6 +776,7 @@ int ModifySiO2::NMR(System & sys, int type_)
 {
 	// NMR analysis
 	double Q[3]{ 0,0,0 };
+	double Qbp[4]{ 0,0,0,0 }; // Q0 Q1 Q2b Q2p
 	
 	int num_Ca = 0;
 	int num_Si = 0;
@@ -792,10 +799,15 @@ int ModifySiO2::NMR(System & sys, int type_)
 				if (bondAtom != NULL && bondAtom->bondNum == 2)cntbrid++;
 			}
 			Q[cntbrid] = Q[cntbrid] + 1;
+
+			if (cntbrid == 0) Qbp[0] = Qbp[0] + 1;
+			else if (cntbrid == 1) Qbp[1] = Qbp[1] + 1;
+			else if (cntbrid == 2 && strncmp(a->name, "BT", 2) == 0) Qbp[2] = Qbp[2] + 1;
+			else if (cntbrid == 2 && strncmp(a->name, "PT", 2) == 0) Qbp[3] = Qbp[3] + 1;
 		}
 	}
 
-	printf("-----Intensity Deconvolution of 29Si NMR Spectrum-----\n\t\tQ0: %5.2f | Q1: %5.2f | Q2: %5.2f\n------------------------------------------------------\n"
+	printf("--------------------Relative Abundance--------------------\n\t\tQ0: %5.2f | Q1: %5.2f | Q2: %5.2f\n----------------------------------------------------------\n"
 		, Q[0] / (Q[0] + Q[1] + Q[2])
 		, Q[1] / (Q[0] + Q[1] + Q[2])
 		, Q[2] / (Q[0] + Q[1] + Q[2]));
@@ -821,6 +833,15 @@ int ModifySiO2::NMR(System & sys, int type_)
 		Q[1] / (Q[0] + Q[1] + Q[2]),
 		Q[2] / (Q[0] + Q[1] + Q[2]),
 		mcl);
+
+	FILE* q12bp = fopen("RelAbd.txt", "a");
+	fprintf(q12bp, "%4.2f\t%6.3f\t%6.3f\t%6.3f\t%6.3f\n", 
+		cs, 
+		Qbp[0] / (Qbp[0] + Qbp[1] + Qbp[2] + Qbp[3]), 
+		Qbp[1] / (Qbp[0] + Qbp[1] + Qbp[2] + Qbp[3]),
+		Qbp[2] / (Qbp[0] + Qbp[1] + Qbp[2] + Qbp[3]),
+		Qbp[3] / (Qbp[0] + Qbp[1] + Qbp[2] + Qbp[3]));
+
 
 	return 0;
 }
