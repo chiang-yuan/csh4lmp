@@ -1,10 +1,22 @@
 # Introduction
 Calcium-silicate-hydrates (C-S-H) is the main binding materials in the cement hydrates. To dates, its atomistic configuration remains unclear and is under extensive discussion. [Nat. Comm.](https://doi.org/10.1038/ncomms5960) [ACS. JPCC.](https://doi.org/10.1021/acs.jpcc.7b02439) However, a straightforward model construction method is still absent and lack of handy tool to build the tailored compositions of C-S-H. __csh4lmp__ realized direct modeling through removing silciate units (SiO2), appending hydrogen (H) to form hydroxyl group, and inserting water molecules (H2O) based on the anhydrous supercell of mineral tobermorites. 
 
-![Removal Regime](/image/Removal.png)
-Removing regime to generate higher Ca/Si ratio. The atoms in gray color are removed in neutral SiO2 groups including one silicon, one bridging and one hydroxyl oxygen as an example marked in yellow circle. Green, purple and orange rectangular represent dimer, pentamer and octamer respectively.
-
 [Chiang Yuan](www.linkedin.com/in/yuanchiang) Mar/2019 @ NTUCE
+
+![Removal Regime](/image/removal.jpg)
+This figure shows how to achieve higer Ca/Si ratio through removing silicate units. The atoms in gray color are removed in neutral SiO2 groups including one silicon atom and two oxgygen atoms. 
+__Nomenclature and Color Convention__
+Type | Name | Element | Color
+---- | -----| ------- | -----
+1 | O (oxygen) | oxygen | red
+2 | Ca (intralayer calcium) | calcium | blue
+3 | Si (silicon) | silicon | brown
+4 | H (hydrogen) | hydrogen | white
+5 | Oh (hydroxyl oxygen) | oxygen | yellow
+6 | Ow (oxygen in water) | oxygen | cyan
+7 | Cw (interlayer calcium) | calcium | magenta
+8 | Hw (hydrogen in water) | hydrogen | white
+9 | Ob (bridging oxygen) | oxygen | purple
 
 # Build
 
