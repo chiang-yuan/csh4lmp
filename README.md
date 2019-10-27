@@ -26,7 +26,7 @@ This figure shows how to achieve higer Ca/Si ratio through removing silicate uni
 # Build
 
 ```
-make
+make Makefile
 ```
 
 # Command
