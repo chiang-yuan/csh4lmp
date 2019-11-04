@@ -87,6 +87,7 @@ int ChangeBox::periodic_to_shrinkwarpped(System & sys, int xyz[3])
 				for (int j = 0; j < 3; j++) {
 					b->ij[1]->x[j] -= round((vij[0] * cellvectors[i][0] + vij[1] * cellvectors[i][1] + vij[2] * cellvectors[i][2]) /
 						(powl(cellvectors[i][0], 2) + powl(cellvectors[i][1], 2) + powl(cellvectors[i][2], 2))) * cellvectors[i][j];
+					b->ij[1]->n[i] = b->ij[0]->n[i];
 				}
 				
 
