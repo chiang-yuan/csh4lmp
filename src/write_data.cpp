@@ -52,22 +52,6 @@ bool WriteData::check_arg(char ** arg, const char * flag, int num, int argc)
 
 int WriteData::write(char * filename_, int hint_flag, System & sys)
 {
-	/*
-	double cellvectors[3][3] = { {sys.box[0][1] - sys.box[0][0], 0 , 0},
-							 {sys.box[2][2], sys.box[1][1] - sys.box[1][0] ,0},
-							 {sys.box[1][2], sys.box[0][2] , sys.box[2][1] - sys.box[2][0]} };
-
-	// make image consistent
-
-	for (int i = 0; i < 3; i++) {
-		for (std::vector<Atom>::iterator a = sys.atoms.begin(); a != sys.atoms.end(); ++a) {
-			a->x[i] += (cellvectors[i][0] * a->n[0] + cellvectors[i][1] * a->n[1] + cellvectors[i][2] * a->n[2]);
-			a->n[0] = 0;
-			a->n[1] = 0;
-			a->n[2] = 0;
-		}
-	}
-	*/
 
 	sprintf(buffer, "%s", filename_);
 	file = fopen(buffer, "w");
@@ -94,15 +78,15 @@ int WriteData::write(char * filename_, int hint_flag, System & sys)
 	fprintf(file, "\n");
 
 	if (sys.triclinic_flag == 0) {
-		fprintf(file, " %15.9f %15.9f xlo xhi\n", sys.box[0][0], sys.box[0][1]);
-		fprintf(file, " %15.9f %15.9f ylo yhi\n", sys.box[1][0], sys.box[1][1]);
-		fprintf(file, " %15.9f %15.9f zlo zhi\n", sys.box[2][0], sys.box[2][1]);
+		fprintf(file, " %16.9e %16.9e xlo xhi\n", sys.box[0][0], sys.box[0][1]);
+		fprintf(file, " %16.9e %16.9e ylo yhi\n", sys.box[1][0], sys.box[1][1]);
+		fprintf(file, " %16.9e %16.9e zlo zhi\n", sys.box[2][0], sys.box[2][1]);
 	}
 	else {
-		fprintf(file, " %15.9f %15.9f xlo xhi\n", sys.box[0][0], sys.box[0][1]);
-		fprintf(file, " %15.9f %15.9f ylo yhi\n", sys.box[1][0], sys.box[1][1]);
-		fprintf(file, " %15.9f %15.9f zlo zhi\n", sys.box[2][0], sys.box[2][1]);
-		fprintf(file, " %15.9f %15.9f %15.9f xy xz yz\n", sys.box[2][2], sys.box[1][2], sys.box[0][2]);
+		fprintf(file, " %16.9e %16.9e xlo xhi\n", sys.box[0][0], sys.box[0][1]);
+		fprintf(file, " %16.9e %16.9e ylo yhi\n", sys.box[1][0], sys.box[1][1]);
+		fprintf(file, " %16.9e %16.9e zlo zhi\n", sys.box[2][0], sys.box[2][1]);
+		fprintf(file, " %16.9e %16.9e %16.9e xy xz yz\n", sys.box[2][2], sys.box[1][2], sys.box[0][2]);
 	}
 
 	// Section : Masses
@@ -117,7 +101,7 @@ int WriteData::write(char * filename_, int hint_flag, System & sys)
 	// Section : Pair Coeffs
 	fprintf(file, "\nPair Coeffs\n\n");
 	for (int i = 0; i < sys.no_atom_types; i++) {
-		fprintf(file, " %3d %14.10f %14.10f", i + 1, sys.atomTypes[i].coeff[0], sys.atomTypes[i].coeff[1]);
+		fprintf(file, " %3d %14.10e %14.10e", i + 1, sys.atomTypes[i].coeff[0], sys.atomTypes[i].coeff[1]);
 
 		if (hint_flag) fprintf(file, " # %s\n", sys.atomTypes[i].element);
 		else fprintf(file, "\n");
@@ -127,7 +111,7 @@ int WriteData::write(char * filename_, int hint_flag, System & sys)
 	if (sys.no_bond_types > 0) {
 		fprintf(file, "\nBond Coeffs\n\n");
 		for (int i = 0; i < sys.no_bond_types; i++) {
-			fprintf(file, " %3d %10.4f %10.4f",
+			fprintf(file, " %3d %10.4e %10.4e",
 				i + 1,
 				sys.bondTypes[i].coeff[0],
 				sys.bondTypes[i].coeff[1]);
@@ -143,7 +127,7 @@ int WriteData::write(char * filename_, int hint_flag, System & sys)
 	if (sys.no_angle_types > 0) {
 		fprintf(file, "\nAngle Coeffs\n\n");
 		for (int i = 0; i < sys.no_angle_types; i++) {
-			fprintf(file, " %3d %10.4f %10.4f",
+			fprintf(file, " %3d %10.4e %10.4e",
 				i + 1,
 				sys.angleTypes[i].coeff[0],
 				sys.angleTypes[i].coeff[1]);
@@ -160,7 +144,7 @@ int WriteData::write(char * filename_, int hint_flag, System & sys)
 	if (hint_flag) fputs("\nAtoms # full\n\n", file);
 	else fputs("\nAtoms\n\n", file);
 	for (auto a : sys.atoms) {
-		fprintf(file, " %6lld %6d %3d %15.9f %15.9f %15.9f %15.9f %3.0f %3.0f %3.0f",
+		fprintf(file, " %6lld %6d %3d %16.9e %16.9e %16.9e %16.9e %3d %3d %3d",
 			a.id, a.molecule, a.type, a.q,
 			a.x[0], a.x[1], a.x[2], a.n[0], a.n[1], a.n[2]
 		);

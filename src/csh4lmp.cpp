@@ -1,4 +1,4 @@
-/* -*- C++ -*------------------------------------------------------------
+ï»¿/* -*- C++ -*------------------------------------------------------------
  *
  *	csh4lmp.exe
  *
@@ -105,23 +105,23 @@ int main(int argc, char *argv[]) {
 	AffineTransform rot(&error);
 
 	if (argc < 2) {
-		printf("\n\t¢z                                                                     ¢{\n");
-		printf("\t¢x¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢x\n");
-		printf("\t¢x                     CSH4LMP  (C-S-H for LAMMPS)                     ¢x\n");
-		printf("\t¢x¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢x\n");
-		printf("\t¢x                                                                     ¢x\n");
-		printf("\t¢x  VERSION: %18s                                        ¢x\n", STL2LMP_VERSION);
-		printf("\t¢x  COMMAND:                                                           ¢x\n");
-		printf("\t¢x     -I/O            |    < [intput file name]                       ¢x\n");
-		printf("\t¢x                     |    > [output file name] hint (y/n)            ¢x\n");
-		printf("\t¢x     -add water      |    -aw add [#] [typeO] [typeH]                ¢x\n");
-		printf("\t¢x     -delete water   |    -dw delete [typeO] [typeH]                 ¢x\n");
-		printf("\t¢x     -remove SiO2    |    -s number [typeSi] [#] [BT/PT ratio]       ¢x\n");
-		printf("\t¢x     -add H          |    -h valence (n/#) [typeO] [typeH] [typeO-H] ¢x\n");
-		printf("\t¢x     -delete atom    |    -d delete atom type [type]                 ¢x\n");
-		printf("\t¢x     -delete bond    |    -d delete bond type [type]                 ¢x\n");
-		printf("\t¢x                                                                     ¢x\n");
-		printf("\t¢|                 Chiang Yuan  (c)  All  Right  Reserved              ¢}\n\n");
+		printf("\n\t|                                                                     |\n");
+		printf("\t|---------------------------------------------------------------------|\n");
+		printf("\t|                     CSH4LMP  (C-S-H for LAMMPS)                     |\n");
+		printf("\t|---------------------------------------------------------------------|\n");
+		printf("\t|                                                                     |\n");
+		printf("\t|  VERSION: %18s                                        |\n", STL2LMP_VERSION);
+		printf("\t|  COMMAND:                                                           |\n");
+		printf("\t|     -I/O            |    < [intput file name]                       |\n");
+		printf("\t|                     |    > [output file name] hint (y/n)            |\n");
+		printf("\t|     -add water      |    -aw add [#] [typeO] [typeH]                |\n");
+		printf("\t|     -delete water   |    -dw delete [typeO] [typeH]                 |\n");
+		printf("\t|     -remove SiO2    |    -s number [typeSi] [#] [BT/PT ratio]       |\n");
+		printf("\t|     -add H          |    -h valence (n/#) [typeO] [typeH] [typeO-H] |\n");
+		printf("\t|     -delete atom    |    -d delete atom type [type]                 |\n");
+		printf("\t|     -delete bond    |    -d delete bond type [type]                 |\n");
+		printf("\t|                                                                     |\n");
+		printf("\t|                 Chiang Yuan  (c)  All  Right  Reserved              |\n\n");
 		//printf("usage command: < (input file name) [-w delete type #] [-w add type #] [-s number (type#) #] [-h valence n/# (typeO) (typeH) (typeO-H)] [> (output file name) hint y/n]\n");
 		char* buffer = new char[MAX_STRING];
 		fgets(buffer, MAX_STRING, stdin);

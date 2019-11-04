@@ -22,7 +22,7 @@ public:
 	int type;		// atom type
 	double q;		// charge
 	double x[3];	// position
-	double n[3];	// image flag
+	int n[3];	// image flag
 
 	char name[MAX_NAME];	// custom name
 	bool delete_flag;		//

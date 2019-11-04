@@ -64,7 +64,7 @@ int ChangeBox::periodic_to_shrinkwarpped(System & sys, int xyz[3])
 							 {sys.box[1][2], sys.box[0][2] , sys.box[2][1] - sys.box[2][0]} };
 
 	// make image consistent
-
+	/*
 	for (std::vector<Atom>::iterator a = sys.atoms.begin(); a != sys.atoms.end(); ++a) {
 		for (int i = 0; i < 3; i++) {
 			a->x[i] += (cellvectors[0][i] * a->n[0] + cellvectors[1][i] * a->n[1] + cellvectors[2][i] * a->n[2]);
@@ -73,7 +73,7 @@ int ChangeBox::periodic_to_shrinkwarpped(System & sys, int xyz[3])
 		a->n[1] = 0;
 		a->n[2] = 0;
 	}
-
+	*/
 	// check bonds not cross boundary
 
 	for (std::vector<Bond>::iterator b = sys.bonds.begin(); b != sys.bonds.end(); ++b) {

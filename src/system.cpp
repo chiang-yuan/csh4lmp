@@ -1,4 +1,4 @@
-#include "system.h"
+ï»¿#include "system.h"
 
 
 
@@ -37,7 +37,7 @@ std::ostream & operator<<(std::ostream& out, const System & sys)
 	sprintf(buffer, "\n================================\n");
 	strcpy(output, buffer);
 	// atom types
-	sprintf(buffer, "           %10s           \n¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w\n", "Atom Types");
+	sprintf(buffer, "           %10s           \n--------------------------------\n", "Atom Types");
 	strcat(output, buffer);
 	for (int i = 0; i < sys.atomTypes.size(); i++) {
 		int num = 0;
@@ -50,7 +50,7 @@ std::ostream & operator<<(std::ostream& out, const System & sys)
 	}
 
 	// bond types
-	sprintf(buffer, "           %10s           \n¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w\n", "Bond Types");
+	sprintf(buffer, "           %10s           \n--------------------------------\n", "Bond Types");
 	strcat(output, buffer);
 	for (int i = 0; i < sys.bondTypes.size(); i++) {
 		int num = 0;
@@ -66,7 +66,7 @@ std::ostream & operator<<(std::ostream& out, const System & sys)
 	}
 
 	// angle types
-	sprintf(buffer, "           %10s           \n¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w¢w\n", "Angle Types");
+	sprintf(buffer, "           %10s           \n--------------------------------\n", "Angle Types");
 	strcat(output, buffer);
 	for (int i = 0; i < sys.angleTypes.size(); i++) {
 		int num = 0;
