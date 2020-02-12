@@ -277,7 +277,7 @@ int main(int argc, char *argv[]) {
 		time_t localtime;
 		time(&localtime);
 		printf("=====================================================================\n");
-		printf("STLtoLAMMPS (%s) starts at %s", STL2LMP_VERSION, ctime(&localtime));
+		printf("CSH4LAMMPS (%s) starts at %s", STL2LMP_VERSION, ctime(&localtime));
 		printf("=====================================================================\n");
 
 		int n = 1;
@@ -413,7 +413,7 @@ int main(int argc, char *argv[]) {
 		}
 		time(&localtime);
 		printf("=====================================================================\n");
-		printf("STLtoLAMMPS (%s) ends at %s", STL2LMP_VERSION, ctime(&localtime));
+		printf("CSH4LAMMPS (%s) ends at %s", STL2LMP_VERSION, ctime(&localtime));
 		printf("=====================================================================\n");
 	}
 
