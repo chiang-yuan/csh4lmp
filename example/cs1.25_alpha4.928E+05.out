@@ -1,12 +1,12 @@
 =====================================================================
-STLtoLAMMPS (v6.0 / 14 Aug 2019) starts at Wed Feb 12 15:16:37 2020
+CSH4LAMMPS (v6.1 / 12 Feb 2020) starts at Wed Feb 12 17:57:32 2020
 =====================================================================
 	Reading from data file: 4_7_3.data ...
 
 ================================
            Atom Types           
 --------------------------------
-    1     O :  1008
+    1     O :     0
     2    Ca :   672
     3    Si :  1008
     4     H :     0
@@ -14,6 +14,7 @@ STLtoLAMMPS (v6.0 / 14 Aug 2019) starts at Wed Feb 12 15:16:37 2020
     6    Ow :     0
     7    Cw :   336
     8    Hw :     0
+    9    Ob :  1008
            Bond Types           
 --------------------------------
     1 Ow-Hw :     0
@@ -31,7 +32,7 @@ ReadData::command(): 0
 ================================
            Atom Types           
 --------------------------------
-    1     O :  2352
+    1     O :  1344
     2    Ca :   672
     3    Si :  1008
     4     H :     0
@@ -39,6 +40,7 @@ ReadData::command(): 0
     6    Ow :     0
     7    Cw :   336
     8    Hw :     0
+    9    Ob :  1008
            Bond Types           
 --------------------------------
     1 Ow-Hw :     0
@@ -107,7 +109,7 @@ ModifySiO2::command(): 0
 ================================
            Atom Types           
 --------------------------------
-    1     O :  2150
+    1     O :  1344
     2    Ca :   672
     3    Si :   806
     4     H :     0
@@ -115,6 +117,7 @@ ModifySiO2::command(): 0
     6    Ow :     0
     7    Cw :   336
     8    Hw :     0
+    9    Ob :   806
            Bond Types           
 --------------------------------
     1 Ow-Hw :     0
@@ -130,10 +133,10 @@ Topology::command(): 0
 
 	Try to append 3024 type 4 atoms to type 9 atoms
 
-	Add 0 type 4 atoms bonded with type 9 atoms
+	Add 202 type 4 atoms bonded with type 9 atoms
 WARNNING: Not all of type 4 atoms being added
-Total charge: -2.520000
-Charge distributed on per atom : 0.000962
+Total charge: 84.340000
+Charge distributed on per atom : -0.032191
 Total charge: -0.000000
 Modify::neutralize(): 0
 ModifyH::add_to_number(): 0
@@ -142,18 +145,19 @@ ModifyH::command(): 0
 ================================
            Atom Types           
 --------------------------------
-    1     O :  2150
+    1     O :  1344
     2    Ca :   672
     3    Si :   806
-    4     H :     0
-    5    Oh :   470
+    4     H :   202
+    5    Oh :   672
     6    Ow :     0
     7    Cw :   336
     8    Hw :     0
+    9    Ob :   604
            Bond Types           
 --------------------------------
     1 Ow-Hw :     0
-    2  Oh-H :     0
+    2  Oh-H :   202
     3  O-Si :  2754
     4 Oh-Si :   268
            Angle Types           
@@ -176,18 +180,19 @@ ModifyH::command(): 0
 ================================
            Atom Types           
 --------------------------------
-    1     O :  2150
+    1     O :  1344
     2    Ca :   672
     3    Si :   806
-    4     H :   202
-    5    Oh :   470
+    4     H :   404
+    5    Oh :   672
     6    Ow :     0
     7    Cw :   336
     8    Hw :     0
+    9    Ob :   604
            Bond Types           
 --------------------------------
     1 Ow-Hw :     0
-    2  Oh-H :   202
+    2  Oh-H :   404
     3  O-Si :  2754
     4 Oh-Si :   268
            Angle Types           
@@ -210,18 +215,19 @@ ModifyH::command(): 0
 ================================
            Atom Types           
 --------------------------------
-    1     O :  2150
+    1     O :  1344
     2    Ca :   672
     3    Si :   806
-    4     H :   202
-    5    Oh :   470
+    4     H :   404
+    5    Oh :   672
     6    Ow :     0
     7    Cw :   336
     8    Hw :     0
+    9    Ob :   604
            Bond Types           
 --------------------------------
     1 Ow-Hw :     0
-    2  Oh-H :   202
+    2  Oh-H :   404
     3  O-Si :  2754
     4 Oh-Si :   268
            Angle Types           
@@ -277,18 +283,19 @@ Modify::command(): 0
 ================================
            Atom Types           
 --------------------------------
-    1     O :  2150
+    1     O :  1344
     2    Ca :   672
     3    Si :   806
-    4     H :   202
-    5    Oh :   470
+    4     H :   404
+    5    Oh :   672
     6    Ow :     0
     7    Cw :   336
     8    Hw :     0
+    9    Ob :   604
            Bond Types           
 --------------------------------
     1 Ow-Hw :     0
-    2  Oh-H :   202
+    2  Oh-H :   404
     3  O-Si :     0
     4 Oh-Si :   268
            Angle Types           
@@ -344,18 +351,19 @@ Modify::command(): 0
 ================================
            Atom Types           
 --------------------------------
-    1     O :  2150
+    1     O :  1344
     2    Ca :   672
     3    Si :   806
-    4     H :   202
-    5    Oh :   470
+    4     H :   404
+    5    Oh :   672
     6    Ow :     0
     7    Cw :   336
     8    Hw :     0
+    9    Ob :   604
            Bond Types           
 --------------------------------
     1 Ow-Hw :     0
-    2  Oh-H :   202
+    2  Oh-H :   404
     3  O-Si :     0
     4 Oh-Si :     0
            Angle Types           
@@ -393,18 +401,19 @@ AddH2O::command(): 0
 ================================
            Atom Types           
 --------------------------------
-    1     O :  2150
+    1     O :  1344
     2    Ca :   672
     3    Si :   806
-    4     H :   202
-    5    Oh :   470
+    4     H :   404
+    5    Oh :   672
     6    Ow :   504
     7    Cw :   336
     8    Hw :  1008
+    9    Ob :   604
            Bond Types           
 --------------------------------
     1 Ow-Hw :  1008
-    2  Oh-H :   202
+    2  Oh-H :   404
     3  O-Si :     0
     4 Oh-Si :     0
            Angle Types           
@@ -418,5 +427,5 @@ AddH2O::command(): 0
 WriteData::write(): 0
 WriteData::commd(): 0
 =====================================================================
-STLtoLAMMPS (v6.0 / 14 Aug 2019) ends at Wed Feb 12 15:16:55 2020
+CSH4LAMMPS (v6.1 / 12 Feb 2020) ends at Wed Feb 12 17:58:31 2020
 =====================================================================
