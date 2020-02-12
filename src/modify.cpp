@@ -1116,12 +1116,36 @@ int Initialize::command(System & sys)
 			if (a->bondNum == 1) {
 				a->type = typeOh;
 				a->q = -1.00;
+				
+				double r = 1;
+				std::vector<Atom*> neigh;
+				for (std::vector<Atom>::iterator j = sys.atoms.begin(); j != sys.atoms.end(); ++j) {
+					if (pow((*j).x[2] - (*a).x[2], 2) < pow(r, 2) ||
+						pow((*j).x[2] + sys.box[2][1] - sys.box[2][0] - (*a).x[2], 2) < pow(r, 2) ||
+						pow((*j).x[2] - sys.box[2][1] + sys.box[2][0] - (*a).x[2], 2) < pow(r, 2)) {
+						neigh.push_back(&*j);
+					}
+				}
+
+				bool intra = false;
+				for (std::vector<Atom*>::iterator n = neigh.begin(); n != neigh.end(); ++n) {
+					if ((*n)->type == typeCa) {
+						intra = true;
+						break;
+					}
+				}
+				neigh.clear();
+
+				if (intra) {
+					a->type = typeO;
+					a->q = -1.14;
+				}
 			}
 			else
 			{
 				int no_bridge_si = 0;
 				for (int i = 0; i < a->bondNum; i++) {
-					if (a->bonds[i]->ij[0]->type == typeH || a->bonds[i]->ij[1]->type == typeH) {
+					if (a->bonds[i]->ij[0]->type == typeHw || a->bonds[i]->ij[1]->type == typeHw) {
 						a->type = typeOw;
 						a->q = -0.82;
 						break;
