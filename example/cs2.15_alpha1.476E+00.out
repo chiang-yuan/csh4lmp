@@ -1,33 +1,7 @@
 =====================================================================
-CSH4LAMMPS (v6.1 / 12 Feb 2020) starts at Wed Feb 12 18:10:05 2020
+CSH4LAMMPS (v6.2 / 15 Feb 2020) starts at Sat Feb 15 20:18:39 2020
 =====================================================================
-	Reading from data file: 4_7_3.data ...
-
-================================
-           Atom Types           
---------------------------------
-    1     O :     0
-    2    Ca :   672
-    3    Si :  1008
-    4     H :     0
-    5    Oh :  2016
-    6    Ow :     0
-    7    Cw :   336
-    8    Hw :     0
-    9    Ob :  1008
-           Bond Types           
---------------------------------
-    1 Ow-Hw :     0
-    2  Oh-H :     0
-    3  O-Si :  2016
-    4 Oh-Si :  2016
-           Angle Types           
---------------------------------
-    1 Hw-Ow-Hw :     0
-================================
-
-ReadData::over(): 0
-ReadData::command(): 0
+Reading from data file: 4_7_3.data ...
 
 ================================
            Atom Types           
@@ -52,9 +26,35 @@ ReadData::command(): 0
     1 Hw-Ow-Hw :     0
 ================================
 
-Topology::command(): 0
+ReadData::over(): 0
+End ReadData: 0
 
-	Ca/Si = 2.15 | BT/PT = 1.48 | BT: 0.60 | PT: 0.40
+================================
+           Atom Types           
+--------------------------------
+    1     O :  1344
+    2    Ca :   672
+    3    Si :  1008
+    4     H :     0
+    5    Oh :   672
+    6    Ow :     0
+    7    Cw :   336
+    8    Hw :     0
+    9    Ob :  1008
+           Bond Types           
+--------------------------------
+    1 Ow-Hw :     0
+    2  Oh-H :     0
+    3  O-Si :  3360
+    4 Oh-Si :   672
+           Angle Types           
+--------------------------------
+    1 Hw-Ow-Hw :     0
+================================
+
+End Topology: 0
+
+	Ca/Si = 2.15 | alpha = 1.48 | BT: 0.60 | PT: 0.40
 
 		Randomly remove  322 BT
 		Randomly remove  217 PT
@@ -100,18 +100,18 @@ Topology::command(): 0
 	bond [===================.] 19/20
 	bond [====================] 20/20
 --------------------Relative Abundance--------------------
-		Q0:  0.31 | Q1:  0.65 | Q2:  0.04
+		Q0:  0.28 | Q1:  0.68 | Q2:  0.04
 ----------------------------------------------------------
-Mean Chain Length:  2.12
+Mean Chain Length:  2.11
 WARNNING: Unreasonable mean chain length exceeds lower bound: 2.217532
 
 ModifySiO2::randomly_remove_SiO2(): 0
-ModifySiO2::command(): 0
+End ModifySiO2: 0
 
 ================================
            Atom Types           
 --------------------------------
-    1     O :   910
+    1     O :  1127
     2    Ca :   672
     3    Si :   469
     4     H :     0
@@ -119,48 +119,47 @@ ModifySiO2::command(): 0
     6    Ow :     0
     7    Cw :   336
     8    Hw :     0
-    9    Ob :   686
+    9    Ob :  1008
            Bond Types           
 --------------------------------
     1 Ow-Hw :     0
     2  Oh-H :     0
-    3  O-Si :  1630
+    3  O-Si :  1848
     4 Oh-Si :    28
            Angle Types           
 --------------------------------
     1 Hw-Ow-Hw :     0
 ================================
 
-Topology::command(): 0
+End Topology: 0
 
-	Try to append 3024 type 4 atoms to type 9 atoms
+	Total Excessive Charge: -4.451E+02 | Target Number of Addition: 1534
 
-	Add 514 type 4 atoms bonded with type 9 atoms
+
+	Try to append 1534 type 4 atoms to type 9 atoms
+
+	Add 830 type 4 atoms bonded with type 9 atoms
 WARNNING: Not all of type 4 atoms being added
-Total charge: 390.420000
-Charge distributed on per atom : -0.200627
-Total charge: -0.000000
-Modify::neutralize(): 0
-ModifyH::add_to_number(): 0
-ModifyH::command(): 0
+ModifyH::add_to_nuetral(): 0
+End ModifyH: 0
 
 ================================
            Atom Types           
 --------------------------------
-    1     O :   910
+    1     O :  1127
     2    Ca :   672
     3    Si :   469
-    4     H :   514
-    5    Oh :   864
+    4     H :   830
+    5    Oh :  1180
     6    Ow :     0
     7    Cw :   336
     8    Hw :     0
-    9    Ob :   172
+    9    Ob :   178
            Bond Types           
 --------------------------------
     1 Ow-Hw :     0
-    2  Oh-H :   514
-    3  O-Si :  1630
+    2  Oh-H :   830
+    3  O-Si :  1848
     4 Oh-Si :    28
            Angle Types           
 --------------------------------
@@ -168,34 +167,32 @@ ModifyH::command(): 0
 ================================
 
 
-	Try to append 3024 type 4 atoms to type 5 atoms
+	Total Excessive Charge: -8.816E+01 | Target Number of Addition: 303
 
-	Add 322 type 4 atoms bonded with type 5 atoms
-WARNNING: Not all of type 4 atoms being added
-Total charge: 93.380000
-Charge distributed on per atom : -0.047986
-Total charge: 0.000000
-Modify::neutralize(): 0
-ModifyH::add_to_number(): 0
-ModifyH::command(): 0
+
+	Try to append 303 type 4 atoms to type 5 atoms
+
+	Add 303 type 4 atoms bonded with type 5 atoms
+ModifyH::add_to_nuetral(): 0
+End ModifyH: 0
 
 ================================
            Atom Types           
 --------------------------------
-    1     O :   910
+    1     O :  1127
     2    Ca :   672
     3    Si :   469
-    4     H :   836
-    5    Oh :   864
+    4     H :  1133
+    5    Oh :  1180
     6    Ow :     0
     7    Cw :   336
     8    Hw :     0
-    9    Ob :   172
+    9    Ob :   178
            Bond Types           
 --------------------------------
     1 Ow-Hw :     0
-    2  Oh-H :   836
-    3  O-Si :  1630
+    2  Oh-H :  1133
+    3  O-Si :  1848
     4 Oh-Si :    28
            Angle Types           
 --------------------------------
@@ -203,34 +200,36 @@ ModifyH::command(): 0
 ================================
 
 
-	Try to append 3024 type 4 atoms to type 1 atoms
+	Total Excessive Charge: -2.900E-01 | Target Number of Addition:   0
+
+
+	Try to append 0 type 4 atoms to type 1 atoms
 
 	Add 0 type 4 atoms bonded with type 1 atoms
-WARNNING: Not all of type 4 atoms being added
-Total charge: 0.000000
-Charge distributed on per atom : -0.000000
-Total charge: 0.000000
+Total charge: -0.290000
+Charge distributed on per atom : 0.000117
+Total charge: -0.000000
 Modify::neutralize(): 0
-ModifyH::add_to_number(): 0
-ModifyH::command(): 0
+ModifyH::add_to_nuetral(): 0
+End ModifyH: 0
 
 ================================
            Atom Types           
 --------------------------------
-    1     O :   910
+    1     O :  1127
     2    Ca :   672
     3    Si :   469
-    4     H :   836
-    5    Oh :   864
+    4     H :  1133
+    5    Oh :  1180
     6    Ow :     0
     7    Cw :   336
     8    Hw :     0
-    9    Ob :   172
+    9    Ob :   178
            Bond Types           
 --------------------------------
     1 Ow-Hw :     0
-    2  Oh-H :   836
-    3  O-Si :  1630
+    2  Oh-H :  1133
+    3  O-Si :  1848
     4 Oh-Si :    28
            Angle Types           
 --------------------------------
@@ -279,25 +278,25 @@ ModifyH::command(): 0
 	bond [==================..] 18/20
 	bond [===================.] 19/20
 	bond [====================] 20/20
-Modify::delete_bond_type(): 1630
-Modify::command(): 0
+Modify::delete_bond_type(): 1848
+End Modify: 0
 
 ================================
            Atom Types           
 --------------------------------
-    1     O :   910
+    1     O :  1127
     2    Ca :   672
     3    Si :   469
-    4     H :   836
-    5    Oh :   864
+    4     H :  1133
+    5    Oh :  1180
     6    Ow :     0
     7    Cw :   336
     8    Hw :     0
-    9    Ob :   172
+    9    Ob :   178
            Bond Types           
 --------------------------------
     1 Ow-Hw :     0
-    2  Oh-H :   836
+    2  Oh-H :  1133
     3  O-Si :     0
     4 Oh-Si :    28
            Angle Types           
@@ -348,24 +347,24 @@ Modify::command(): 0
 	bond [===================.] 19/20
 	bond [====================] 20/20
 Modify::delete_bond_type(): 28
-Modify::command(): 0
+End Modify: 0
 
 ================================
            Atom Types           
 --------------------------------
-    1     O :   910
+    1     O :  1127
     2    Ca :   672
     3    Si :   469
-    4     H :   836
-    5    Oh :   864
+    4     H :  1133
+    5    Oh :  1180
     6    Ow :     0
     7    Cw :   336
     8    Hw :     0
-    9    Ob :   172
+    9    Ob :   178
            Bond Types           
 --------------------------------
     1 Ow-Hw :     0
-    2  Oh-H :   836
+    2  Oh-H :  1133
     3  O-Si :     0
     4 Oh-Si :     0
            Angle Types           
@@ -398,24 +397,24 @@ Modify::command(): 0
 	Ca/Si = 2.15 | H2O/Si = 2.62
 
 ModifyH2O::add_type(): 1230
-AddH2O::command(): 0
+End AddH2O: 0
 
 ================================
            Atom Types           
 --------------------------------
-    1     O :   910
+    1     O :  1127
     2    Ca :   672
     3    Si :   469
-    4     H :   836
-    5    Oh :   864
+    4     H :  1133
+    5    Oh :  1180
     6    Ow :  1230
     7    Cw :   336
     8    Hw :  2460
-    9    Ob :   172
+    9    Ob :   178
            Bond Types           
 --------------------------------
     1 Ow-Hw :  2460
-    2  Oh-H :   836
+    2  Oh-H :  1133
     3  O-Si :     0
     4 Oh-Si :     0
            Angle Types           
@@ -427,7 +426,7 @@ AddH2O::command(): 0
 	Write data to file: cs2.15_alpha1.476E+00.data
 
 WriteData::write(): 0
-WriteData::commd(): 0
+End WriteData: 0:
 =====================================================================
-CSH4LAMMPS (v6.1 / 12 Feb 2020) ends at Wed Feb 12 18:10:47 2020
+CSH4LAMMPS (v6.2 / 15 Feb 2020) ends at Sat Feb 15 20:19:09 2020
 =====================================================================

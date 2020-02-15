@@ -78,7 +78,7 @@ int ReadData::over(char* filename_, System & sys)
 	file = fopen(filename_, "r");
 	if (file == NULL) return error->message("Cannot open file \"%s\"", 2, filename_);
 
-	printf("\tReading from data file: %s ...\n", filename_);
+	printf("Reading from data file: %s ...\n", filename_);
 
 	/***** Scan 0 : Read Header *****/
 

@@ -591,7 +591,7 @@ int ModifySiO2::randomly_remove_SiO2(System & sys, int typeSi_, int num_, double
 	double bp = rbp_;
 
 	FILE* nmr = fopen("NMR.txt", "a");
-	printf("\n\tCa/Si = %4.2f | BT/PT = %4.2f | BT: %4.2f | PT: %4.2f\n\n", cs, bp, bp / (1.0 + bp), 1.0 / (1.0 + bp));
+	printf("\n\tCa/Si = %4.2f | alpha = %4.2f | BT: %4.2f | PT: %4.2f\n\n", cs, bp, bp / (1.0 + bp), 1.0 / (1.0 + bp));
 	fprintf(nmr,"%4.2f\t%4.2f", cs, bp);
 
 	int num_del = 0;
@@ -616,16 +616,14 @@ int ModifySiO2::randomly_remove_SiO2(System & sys, int typeSi_, int num_, double
 			}
 		}
 
-		// Mode 1 : delete one BO oxygen and one NBO oxygen
-		
-		
+		// Mode 1 : delete one BO oxygen and one NBO oxygen		
 
 		if (bo.size() == 0 || nbo.size() == 0) {
 			group_BT_Si.erase(group_BT_Si.begin() + idel);
 			continue;
 		}
 
-		bo[rand() % bo.size()]->delete_flag = true;
+		//bo[rand() % bo.size()]->delete_flag = true;
 		nbo[rand() % nbo.size()]->delete_flag = true;
 		
 		
@@ -682,19 +680,21 @@ int ModifySiO2::randomly_remove_SiO2(System & sys, int typeSi_, int num_, double
 
 		// Mode 1 : delete one bo oxygen and one nbo oxygen
 
-		/*
+		
 		
 		if (bo.size() == 0 || nbo.size() == 0) {
 			group_PT_Si.erase(group_PT_Si.begin() + idel);
 			continue;
 		}
 
-		bo[rand() % bo.size()]->delete_flag = true;
+		//bo[rand() % bo.size()]->delete_flag = true;
 		nbo[rand() % nbo.size()]->delete_flag = true;
 		
-		*/
+		
 
 		// Mode 2 : delete two nbo oxygen
+
+		/*
 		
 		if (nbo.size() != 2) {
 			group_PT_Si.erase(group_PT_Si.begin() + idel);
@@ -703,6 +703,8 @@ int ModifySiO2::randomly_remove_SiO2(System & sys, int typeSi_, int num_, double
 		
 		nbo[0]->delete_flag = true;
 		nbo[1]->delete_flag = true;
+
+		*/
 
 		//
 
@@ -1398,12 +1400,16 @@ int ModifyH::add_to_neutral(System & sys, int typeO_, int typeH_, int type_O_H)
 {
 	srand(time(NULL));
 
-	double qt = charge(sys);
+	double qt = 0;
 	double q_H = 0.29;
 	double bl = 1.00;			// bond length
 
+	for (std::vector<Atom>::iterator a = sys.atoms.begin(); a != sys.atoms.end(); ++a) {
+		qt += a->q;
+	}
+	
 	// count the number of H atoms need to be added to reach neutral
-	if (qt > 0) error->message("Cannot neutralize chage since lumped charge > 0", 1);
+	if (qt > 0) error->warning("Cannot neutralize chage since lumped charge > 0", 1);
 	int num_ = - qt / q_H;
 
 	printf("\n\tTotal Excessive Charge: %6.3E | Target Number of Addition: %3d\n\n", qt, num_);
@@ -1414,6 +1420,14 @@ int ModifyH::add_to_neutral(System & sys, int typeO_, int typeH_, int type_O_H)
 int ModifyH::add_to_number(System & sys, int num_, int typeO_, int typeH_, int type_O_H)
 {
 	srand(time(NULL));
+
+	double qOh = -1.00;
+	for (std::vector<Atom>::iterator a = sys.atoms.begin(); a != sys.atoms.end(); ++a) {
+		if (a->type == typeOh) {
+			qOh = a->q;
+			break;
+		}
+	}
 
 	double q_H = 0.29;
 	double bl = 1.00;			// bond length
@@ -1428,8 +1442,8 @@ int ModifyH::add_to_number(System & sys, int num_, int typeO_, int typeH_, int t
 			// Mode 1 : add at oxygen with coordination number equal to 0
 
 			if ((*a).type == typeO_ && (*a).bondNum == 0) {
-				a->type = typeOh;
-				a->q = -1.00;
+				//a->type = typeOh;
+				//a->q = -1.00;
 				group_O.push_back(&*a);
 			}
 
@@ -1462,8 +1476,8 @@ int ModifyH::add_to_number(System & sys, int num_, int typeO_, int typeH_, int t
 			// Mode 2 : add at bridging oxygen with coordination number less than 2
 
 			if ((*a).type == typeO_ && (*a).bondNum < 2) {
-				a->type = typeOh;
-				a->q = -1.00;
+				//a->type = typeOh;
+				//a->q = -1.00;
 				group_O.push_back(&*a);
 			}
 
@@ -1544,6 +1558,8 @@ int ModifyH::add_to_number(System & sys, int num_, int typeO_, int typeH_, int t
 		target->bondID[target->bondNum] = sys.bonds[ibond - 1].id;
 		target->bonds[target->bondNum] = &sys.bonds[ibond - 1];
 		target->bondNum++;
+		target->type = typeOh;
+		target->q = qOh;
 
 		sys.bonds[ibond - 1].ij[0] = &*target;
 		sys.bonds[ibond - 1].ij[1] = &sys.atoms[iatom - 1];
@@ -1560,11 +1576,15 @@ int ModifyH::add_to_number(System & sys, int num_, int typeO_, int typeH_, int t
 
 	printf("\tAdd %d type %d atoms bonded with type %d atoms\n", num_add, typeH_, typeO_);
 
-	if (num_add < num_) error->warning("Not all of type %s atoms being added", 2, std::to_string(typeH_).c_str());
-
-	// Balance excess charge
-	std::vector<int> dis_atom{ typeO, typeOh, typeOb };
-	printf("Modify::neutralize(): %d\n", neutralize(sys, dis_atom));
+	
+	if (num_add == 0) {
+		// Balance excess charge if zero H atom is added
+		std::vector<int> dis_atom{ typeO, typeOh, typeOb };
+		printf("Modify::neutralize(): %d\n", neutralize(sys, dis_atom));
+	}
+	else if (num_add < num_) {
+		error->warning("Not all of type %s atoms being added", 2, std::to_string(typeH_).c_str());
+	}
 
 	return 0;
 }

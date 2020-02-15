@@ -292,20 +292,20 @@ int main(int argc, char *argv[]) {
 					if (!check_arg(argv, "read_data", n, argc)) return error.message("", 3);
 					commd[i] = argv[n];
 				}
-				printf("ReadData::command(): %d\n", reader.command(ncomm, commd, sys));
+				printf("End ReadData: %d\n", reader.command(ncomm, commd, sys));
 
 			}
 
 			if (strncmp(argv[n], "-r", 2) == 0) {
-				printf("AffineTransform::command(): %d\n", rot.command(sys));
+				printf("End AffineTransform: %d\n", rot.command(sys));
 			}
 
 			if (strncmp(argv[n], "-t", 2) == 0) {
-				printf("Topology::command(): %d\n", topo.command(sys));
+				printf("End Topology: %d\n", topo.command(sys));
 			}
 
 			if (strncmp(argv[n], "-i", 2) == 0) {
-				printf("Initialize::command(): %d\n", init.command(sys));
+				printf("End Initialize: %d\n", init.command(sys));
 			}
 
 			if (strncmp(argv[n], "-aw", 3) == 0) {
@@ -317,7 +317,7 @@ int main(int argc, char *argv[]) {
 					if (!check_arg(argv, "modify", n, argc)) return error.message("", 4);
 					commd[i] = argv[n];
 				}
-				printf("AddH2O::command(): %d\n", addH2O.command(ncomm, commd, sys));
+				printf("End AddH2O: %d\n", addH2O.command(ncomm, commd, sys));
 				cout << sys;
 			}
 
@@ -330,7 +330,7 @@ int main(int argc, char *argv[]) {
 					if (!check_arg(argv, "modify", n, argc)) return error.message("", 4);
 					commd[i] = argv[n];
 				}
-				printf("Modify::command(): %d\n", rmH2O.command(ncomm, commd, sys));
+				printf("End Modify: %d\n", rmH2O.command(ncomm, commd, sys));
 				cout << sys;
 			}
 
@@ -343,9 +343,9 @@ int main(int argc, char *argv[]) {
 					if (!check_arg(argv, "modify", n, argc)) return error.message("", 5);
 					commd[i] = argv[n];
 				}
-				printf("Topology::command(): %d\n", topo.command(sys));
-				printf("ModifySiO2::command(): %d\n", rmSiO2.command(ncomm, commd, sys));
-				printf("Topology::command(): %d\n", topo.command(sys));
+				printf("End Topology: %d\n", topo.command(sys));
+				printf("End ModifySiO2: %d\n", rmSiO2.command(ncomm, commd, sys));
+				printf("End Topology: %d\n", topo.command(sys));
 			}
 
 			if (strncmp(argv[n], "-h", 2) == 0) {
@@ -358,7 +358,7 @@ int main(int argc, char *argv[]) {
 					commd[i] = argv[n];
 				}
 
-				printf("ModifyH::command(): %d\n", addH.command(ncomm, commd, sys));
+				printf("End ModifyH: %d\n", addH.command(ncomm, commd, sys));
 
 				cout << sys;
 			}
@@ -373,7 +373,7 @@ int main(int argc, char *argv[]) {
 					commd[i] = argv[n];
 				}
 
-				printf("Modify::command(): %d\n", delt.command(ncomm, commd, sys));
+				printf("End Modify: %d\n", delt.command(ncomm, commd, sys));
 
 				cout << sys;
 			}
@@ -388,7 +388,7 @@ int main(int argc, char *argv[]) {
 					commd[i] = argv[n];
 				}
 
-				printf("ChangeBox::command(): %d\n", p2m.command(ncomm, commd, sys));
+				printf("End ChangeBox: %d\n", p2m.command(ncomm, commd, sys));
 
 			}
 
@@ -403,7 +403,7 @@ int main(int argc, char *argv[]) {
 					commd[i] = argv[n];
 				}
 
-				printf("WriteData::commd(): %d\n", writer.command(ncomm, commd, sys));
+				printf("End WriteData: %d:\n", writer.command(ncomm, commd, sys));
 			}
 
 			if (argv[n] == NULL) {
