@@ -1,5 +1,5 @@
 =====================================================================
-CSH4LAMMPS (v6.2 / 15 Feb 2020) starts at Sat Feb 15 20:13:43 2020
+CSH4LAMMPS (v6.2 / 15 Feb 2020) starts at Wed Jun  3 19:12:31 2020
 =====================================================================
 Reading from data file: 4_7_3.data ...
 
@@ -236,6 +236,43 @@ End ModifyH: 0
     1 Hw-Ow-Hw :     0
 ================================
 
+
+	Total Excessive Charge: -1.371E-11 | Target Number of Addition:   0
+
+
+	Try to append 0 type 4 atoms to type 1 atoms
+
+	Add 0 type 4 atoms bonded with type 1 atoms
+Total charge: -0.000000
+Charge distributed on per atom : 0.000000
+Total charge: 0.000000
+Modify::neutralize(): 0
+ModifyH::add_to_nuetral(): 0
+End ModifyH: 0
+
+================================
+           Atom Types           
+--------------------------------
+    1     O :  1276
+    2    Ca :   672
+    3    Si :   650
+    4     H :   841
+    5    Oh :  1036
+    6    Ow :     0
+    7    Cw :   336
+    8    Hw :     0
+    9    Ob :   354
+           Bond Types           
+--------------------------------
+    1 Ow-Hw :     0
+    2  Oh-H :   841
+    3  O-Si :  2508
+    4 Oh-Si :    92
+           Angle Types           
+--------------------------------
+    1 Hw-Ow-Hw :     0
+================================
+
 	atom [....................]  0/20
 	atom [=...................]  1/20
 	atom [==..................]  2/20
@@ -428,5 +465,5 @@ End AddH2O: 0
 WriteData::write(): 0
 End WriteData: 0:
 =====================================================================
-CSH4LAMMPS (v6.2 / 15 Feb 2020) ends at Sat Feb 15 20:14:02 2020
+CSH4LAMMPS (v6.2 / 15 Feb 2020) ends at Wed Jun  3 19:12:51 2020
 =====================================================================

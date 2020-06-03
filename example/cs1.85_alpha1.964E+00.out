@@ -1,5 +1,5 @@
 =====================================================================
-CSH4LAMMPS (v6.2 / 15 Feb 2020) starts at Sat Feb 15 20:15:57 2020
+CSH4LAMMPS (v6.2 / 15 Feb 2020) starts at Wed Jun  3 19:14:45 2020
 =====================================================================
 Reading from data file: 4_7_3.data ...
 
@@ -100,9 +100,11 @@ End Topology: 0
 	bond [===================.] 19/20
 	bond [====================] 20/20
 --------------------Relative Abundance--------------------
-		Q0:  0.22 | Q1:  0.67 | Q2:  0.11
+		Q0:  0.19 | Q1:  0.71 | Q2:  0.10
 ----------------------------------------------------------
-Mean Chain Length:  2.33
+Mean Chain Length:  2.27
+WARNNING: Unreasonable mean chain length exceeds lower bound: 2.294276
+
 ModifySiO2::randomly_remove_SiO2(): 0
 End ModifySiO2: 0
 
@@ -136,7 +138,7 @@ End Topology: 0
 
 	Try to append 1375 type 4 atoms to type 9 atoms
 
-	Add 766 type 4 atoms bonded with type 9 atoms
+	Add 762 type 4 atoms bonded with type 9 atoms
 WARNNING: Not all of type 4 atoms being added
 ModifyH::add_to_nuetral(): 0
 End ModifyH: 0
@@ -147,16 +149,16 @@ End ModifyH: 0
     1     O :  1188
     2    Ca :   672
     3    Si :   545
-    4     H :   766
-    5    Oh :  1131
+    4     H :   762
+    5    Oh :  1127
     6    Ow :     0
     7    Cw :   336
     8    Hw :     0
-    9    Ob :   242
+    9    Ob :   246
            Bond Types           
 --------------------------------
     1 Ow-Hw :     0
-    2  Oh-H :   766
+    2  Oh-H :   762
     3  O-Si :  2122
     4 Oh-Si :    58
            Angle Types           
@@ -165,12 +167,12 @@ End ModifyH: 0
 ================================
 
 
-	Total Excessive Charge: -6.950E+01 | Target Number of Addition: 239
+	Total Excessive Charge: -7.122E+01 | Target Number of Addition: 245
 
 
-	Try to append 239 type 4 atoms to type 5 atoms
+	Try to append 245 type 4 atoms to type 5 atoms
 
-	Add 239 type 4 atoms bonded with type 5 atoms
+	Add 245 type 4 atoms bonded with type 5 atoms
 ModifyH::add_to_nuetral(): 0
 End ModifyH: 0
 
@@ -180,16 +182,16 @@ End ModifyH: 0
     1     O :  1188
     2    Ca :   672
     3    Si :   545
-    4     H :  1005
-    5    Oh :  1131
+    4     H :  1007
+    5    Oh :  1127
     6    Ow :     0
     7    Cw :   336
     8    Hw :     0
-    9    Ob :   242
+    9    Ob :   246
            Bond Types           
 --------------------------------
     1 Ow-Hw :     0
-    2  Oh-H :  1005
+    2  Oh-H :  1007
     3  O-Si :  2122
     4 Oh-Si :    58
            Angle Types           
@@ -198,14 +200,14 @@ End ModifyH: 0
 ================================
 
 
-	Total Excessive Charge: -1.900E-01 | Target Number of Addition:   0
+	Total Excessive Charge: -1.700E-01 | Target Number of Addition:   0
 
 
 	Try to append 0 type 4 atoms to type 1 atoms
 
 	Add 0 type 4 atoms bonded with type 1 atoms
-Total charge: -0.190000
-Charge distributed on per atom : 0.000074
+Total charge: -0.170000
+Charge distributed on per atom : 0.000066
 Total charge: -0.000000
 Modify::neutralize(): 0
 ModifyH::add_to_nuetral(): 0
@@ -217,16 +219,53 @@ End ModifyH: 0
     1     O :  1188
     2    Ca :   672
     3    Si :   545
-    4     H :  1005
-    5    Oh :  1131
+    4     H :  1007
+    5    Oh :  1127
     6    Ow :     0
     7    Cw :   336
     8    Hw :     0
-    9    Ob :   242
+    9    Ob :   246
            Bond Types           
 --------------------------------
     1 Ow-Hw :     0
-    2  Oh-H :  1005
+    2  Oh-H :  1007
+    3  O-Si :  2122
+    4 Oh-Si :    58
+           Angle Types           
+--------------------------------
+    1 Hw-Ow-Hw :     0
+================================
+
+
+	Total Excessive Charge: -1.473E-11 | Target Number of Addition:   0
+
+
+	Try to append 0 type 4 atoms to type 1 atoms
+
+	Add 0 type 4 atoms bonded with type 1 atoms
+Total charge: -0.000000
+Charge distributed on per atom : 0.000000
+Total charge: -0.000000
+Modify::neutralize(): 0
+ModifyH::add_to_nuetral(): 0
+End ModifyH: 0
+
+================================
+           Atom Types           
+--------------------------------
+    1     O :  1188
+    2    Ca :   672
+    3    Si :   545
+    4     H :  1007
+    5    Oh :  1127
+    6    Ow :     0
+    7    Cw :   336
+    8    Hw :     0
+    9    Ob :   246
+           Bond Types           
+--------------------------------
+    1 Ow-Hw :     0
+    2  Oh-H :  1007
     3  O-Si :  2122
     4 Oh-Si :    58
            Angle Types           
@@ -285,16 +324,16 @@ End Modify: 0
     1     O :  1188
     2    Ca :   672
     3    Si :   545
-    4     H :  1005
-    5    Oh :  1131
+    4     H :  1007
+    5    Oh :  1127
     6    Ow :     0
     7    Cw :   336
     8    Hw :     0
-    9    Ob :   242
+    9    Ob :   246
            Bond Types           
 --------------------------------
     1 Ow-Hw :     0
-    2  Oh-H :  1005
+    2  Oh-H :  1007
     3  O-Si :     0
     4 Oh-Si :    58
            Angle Types           
@@ -353,16 +392,16 @@ End Modify: 0
     1     O :  1188
     2    Ca :   672
     3    Si :   545
-    4     H :  1005
-    5    Oh :  1131
+    4     H :  1007
+    5    Oh :  1127
     6    Ow :     0
     7    Cw :   336
     8    Hw :     0
-    9    Ob :   242
+    9    Ob :   246
            Bond Types           
 --------------------------------
     1 Ow-Hw :     0
-    2  Oh-H :  1005
+    2  Oh-H :  1007
     3  O-Si :     0
     4 Oh-Si :     0
            Angle Types           
@@ -403,16 +442,16 @@ End AddH2O: 0
     1     O :  1188
     2    Ca :   672
     3    Si :   545
-    4     H :  1005
-    5    Oh :  1131
+    4     H :  1007
+    5    Oh :  1127
     6    Ow :   988
     7    Cw :   336
     8    Hw :  1976
-    9    Ob :   242
+    9    Ob :   246
            Bond Types           
 --------------------------------
     1 Ow-Hw :  1976
-    2  Oh-H :  1005
+    2  Oh-H :  1007
     3  O-Si :     0
     4 Oh-Si :     0
            Angle Types           
@@ -426,5 +465,5 @@ End AddH2O: 0
 WriteData::write(): 0
 End WriteData: 0:
 =====================================================================
-CSH4LAMMPS (v6.2 / 15 Feb 2020) ends at Sat Feb 15 20:16:22 2020
+CSH4LAMMPS (v6.2 / 15 Feb 2020) ends at Wed Jun  3 19:15:10 2020
 =====================================================================

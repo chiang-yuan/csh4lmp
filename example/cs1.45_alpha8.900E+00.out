@@ -1,5 +1,5 @@
 =====================================================================
-CSH4LAMMPS (v6.2 / 15 Feb 2020) starts at Sat Feb 15 20:13:07 2020
+CSH4LAMMPS (v6.2 / 15 Feb 2020) starts at Wed Jun  3 19:11:53 2020
 =====================================================================
 Reading from data file: 4_7_3.data ...
 
@@ -100,9 +100,9 @@ End Topology: 0
 	bond [===================.] 19/20
 	bond [====================] 20/20
 --------------------Relative Abundance--------------------
-		Q0:  0.03 | Q1:  0.77 | Q2:  0.20
+		Q0:  0.04 | Q1:  0.76 | Q2:  0.20
 ----------------------------------------------------------
-Mean Chain Length:  2.51
+Mean Chain Length:  2.54
 WARNNING: Unreasonable mean chain length exceeds lower bound: 2.555112
 
 ModifySiO2::randomly_remove_SiO2(): 0
@@ -208,6 +208,43 @@ End ModifyH: 0
 	Add 0 type 4 atoms bonded with type 1 atoms
 Total charge: -0.080000
 Charge distributed on per atom : 0.000030
+Total charge: -0.000000
+Modify::neutralize(): 0
+ModifyH::add_to_nuetral(): 0
+End ModifyH: 0
+
+================================
+           Atom Types           
+--------------------------------
+    1     O :  1313
+    2    Ca :   672
+    3    Si :   695
+    4     H :   772
+    5    Oh :   993
+    6    Ow :     0
+    7    Cw :   336
+    8    Hw :     0
+    9    Ob :   405
+           Bond Types           
+--------------------------------
+    1 Ow-Hw :     0
+    2  Oh-H :   772
+    3  O-Si :  2672
+    4 Oh-Si :   108
+           Angle Types           
+--------------------------------
+    1 Hw-Ow-Hw :     0
+================================
+
+
+	Total Excessive Charge: -1.858E-12 | Target Number of Addition:   0
+
+
+	Try to append 0 type 4 atoms to type 1 atoms
+
+	Add 0 type 4 atoms bonded with type 1 atoms
+Total charge: -0.000000
+Charge distributed on per atom : 0.000000
 Total charge: -0.000000
 Modify::neutralize(): 0
 ModifyH::add_to_nuetral(): 0
@@ -427,5 +464,5 @@ End AddH2O: 0
 WriteData::write(): 0
 End WriteData: 0:
 =====================================================================
-CSH4LAMMPS (v6.2 / 15 Feb 2020) ends at Sat Feb 15 20:13:25 2020
+CSH4LAMMPS (v6.2 / 15 Feb 2020) ends at Wed Jun  3 19:12:12 2020
 =====================================================================

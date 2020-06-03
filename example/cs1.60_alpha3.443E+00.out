@@ -1,5 +1,5 @@
 =====================================================================
-CSH4LAMMPS (v6.2 / 15 Feb 2020) starts at Sat Feb 15 20:14:02 2020
+CSH4LAMMPS (v6.2 / 15 Feb 2020) starts at Wed Jun  3 19:12:51 2020
 =====================================================================
 Reading from data file: 4_7_3.data ...
 
@@ -100,7 +100,7 @@ End Topology: 0
 	bond [===================.] 19/20
 	bond [====================] 20/20
 --------------------Relative Abundance--------------------
-		Q0:  0.10 | Q1:  0.73 | Q2:  0.17
+		Q0:  0.11 | Q1:  0.72 | Q2:  0.17
 ----------------------------------------------------------
 Mean Chain Length:  2.47
 ModifySiO2::randomly_remove_SiO2(): 0
@@ -136,7 +136,7 @@ End Topology: 0
 
 	Try to append 1198 type 4 atoms to type 9 atoms
 
-	Add 669 type 4 atoms bonded with type 9 atoms
+	Add 675 type 4 atoms bonded with type 9 atoms
 WARNNING: Not all of type 4 atoms being added
 ModifyH::add_to_nuetral(): 0
 End ModifyH: 0
@@ -147,16 +147,16 @@ End ModifyH: 0
     1     O :  1259
     2    Ca :   672
     3    Si :   630
-    4     H :   669
-    5    Oh :  1048
+    4     H :   675
+    5    Oh :  1054
     6    Ow :     0
     7    Cw :   336
     8    Hw :     0
-    9    Ob :   339
+    9    Ob :   333
            Bond Types           
 --------------------------------
     1 Ow-Hw :     0
-    2  Oh-H :   669
+    2  Oh-H :   675
     3  O-Si :  2434
     4 Oh-Si :    86
            Angle Types           
@@ -165,12 +165,12 @@ End ModifyH: 0
 ================================
 
 
-	Total Excessive Charge: -5.995E+01 | Target Number of Addition: 206
+	Total Excessive Charge: -5.737E+01 | Target Number of Addition: 197
 
 
-	Try to append 206 type 4 atoms to type 5 atoms
+	Try to append 197 type 4 atoms to type 5 atoms
 
-	Add 206 type 4 atoms bonded with type 5 atoms
+	Add 197 type 4 atoms bonded with type 5 atoms
 ModifyH::add_to_nuetral(): 0
 End ModifyH: 0
 
@@ -180,16 +180,16 @@ End ModifyH: 0
     1     O :  1259
     2    Ca :   672
     3    Si :   630
-    4     H :   875
-    5    Oh :  1048
+    4     H :   872
+    5    Oh :  1054
     6    Ow :     0
     7    Cw :   336
     8    Hw :     0
-    9    Ob :   339
+    9    Ob :   333
            Bond Types           
 --------------------------------
     1 Ow-Hw :     0
-    2  Oh-H :   875
+    2  Oh-H :   872
     3  O-Si :  2434
     4 Oh-Si :    86
            Angle Types           
@@ -198,14 +198,14 @@ End ModifyH: 0
 ================================
 
 
-	Total Excessive Charge: -2.100E-01 | Target Number of Addition:   0
+	Total Excessive Charge: -2.400E-01 | Target Number of Addition:   0
 
 
 	Try to append 0 type 4 atoms to type 1 atoms
 
 	Add 0 type 4 atoms bonded with type 1 atoms
-Total charge: -0.210000
-Charge distributed on per atom : 0.000079
+Total charge: -0.240000
+Charge distributed on per atom : 0.000091
 Total charge: -0.000000
 Modify::neutralize(): 0
 ModifyH::add_to_nuetral(): 0
@@ -217,16 +217,53 @@ End ModifyH: 0
     1     O :  1259
     2    Ca :   672
     3    Si :   630
-    4     H :   875
-    5    Oh :  1048
+    4     H :   872
+    5    Oh :  1054
     6    Ow :     0
     7    Cw :   336
     8    Hw :     0
-    9    Ob :   339
+    9    Ob :   333
            Bond Types           
 --------------------------------
     1 Ow-Hw :     0
-    2  Oh-H :   875
+    2  Oh-H :   872
+    3  O-Si :  2434
+    4 Oh-Si :    86
+           Angle Types           
+--------------------------------
+    1 Hw-Ow-Hw :     0
+================================
+
+
+	Total Excessive Charge: -1.445E-11 | Target Number of Addition:   0
+
+
+	Try to append 0 type 4 atoms to type 1 atoms
+
+	Add 0 type 4 atoms bonded with type 1 atoms
+Total charge: -0.000000
+Charge distributed on per atom : 0.000000
+Total charge: 0.000000
+Modify::neutralize(): 0
+ModifyH::add_to_nuetral(): 0
+End ModifyH: 0
+
+================================
+           Atom Types           
+--------------------------------
+    1     O :  1259
+    2    Ca :   672
+    3    Si :   630
+    4     H :   872
+    5    Oh :  1054
+    6    Ow :     0
+    7    Cw :   336
+    8    Hw :     0
+    9    Ob :   333
+           Bond Types           
+--------------------------------
+    1 Ow-Hw :     0
+    2  Oh-H :   872
     3  O-Si :  2434
     4 Oh-Si :    86
            Angle Types           
@@ -285,16 +322,16 @@ End Modify: 0
     1     O :  1259
     2    Ca :   672
     3    Si :   630
-    4     H :   875
-    5    Oh :  1048
+    4     H :   872
+    5    Oh :  1054
     6    Ow :     0
     7    Cw :   336
     8    Hw :     0
-    9    Ob :   339
+    9    Ob :   333
            Bond Types           
 --------------------------------
     1 Ow-Hw :     0
-    2  Oh-H :   875
+    2  Oh-H :   872
     3  O-Si :     0
     4 Oh-Si :    86
            Angle Types           
@@ -353,16 +390,16 @@ End Modify: 0
     1     O :  1259
     2    Ca :   672
     3    Si :   630
-    4     H :   875
-    5    Oh :  1048
+    4     H :   872
+    5    Oh :  1054
     6    Ow :     0
     7    Cw :   336
     8    Hw :     0
-    9    Ob :   339
+    9    Ob :   333
            Bond Types           
 --------------------------------
     1 Ow-Hw :     0
-    2  Oh-H :   875
+    2  Oh-H :   872
     3  O-Si :     0
     4 Oh-Si :     0
            Angle Types           
@@ -403,16 +440,16 @@ End AddH2O: 0
     1     O :  1259
     2    Ca :   672
     3    Si :   630
-    4     H :   875
-    5    Oh :  1048
+    4     H :   872
+    5    Oh :  1054
     6    Ow :   786
     7    Cw :   336
     8    Hw :  1572
-    9    Ob :   339
+    9    Ob :   333
            Bond Types           
 --------------------------------
     1 Ow-Hw :  1572
-    2  Oh-H :   875
+    2  Oh-H :   872
     3  O-Si :     0
     4 Oh-Si :     0
            Angle Types           
@@ -426,5 +463,5 @@ End AddH2O: 0
 WriteData::write(): 0
 End WriteData: 0:
 =====================================================================
-CSH4LAMMPS (v6.2 / 15 Feb 2020) ends at Sat Feb 15 20:14:24 2020
+CSH4LAMMPS (v6.2 / 15 Feb 2020) ends at Wed Jun  3 19:13:12 2020
 =====================================================================
