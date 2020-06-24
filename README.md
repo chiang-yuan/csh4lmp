@@ -1,5 +1,7 @@
 # csh4lmp
-Calcium-silicate-hydrates (C-S-H) is the main binding materials in the cement hydrates. To date, its atomistic configuration remains uncertain and is under extensive discussion. [Nat. Comm.](https://doi.org/10.1038/ncomms5960) [ACS. JPCC.](https://doi.org/10.1021/acs.jpcc.7b02439) A straightforward model construction method is still absent and lack a handy tool to build the full atomistic C-S-H with tailored compositions. __csh4lmp__ realized the atomic structure modification through removing silciate monoxdide (SiO), appending hydrogen (H), and inserting water molecules (H2O) based on the anhydrous supercell of [Hamid's mineral 11-$\AA$ tobermorites](https://doi.org/10.1524/zkri.1981.154.3-4.189). 
+Calcium-silicate-hydrates (C-S-H) is the main binding materials in the cement hydrates. To date, its atomistic configuration remains uncertain and is under extensive discussion. [Nat. Comm.](https://doi.org/10.1038/ncomms5960) [ACS. JPCC.](https://doi.org/10.1021/acs.jpcc.7b02439) A straightforward model construction method is still absent and lack a handy tool to build the full atomistic C-S-H with tailored compositions. __csh4lmp__ realized the atomic structure modification through removing silciate monoxdide (SiO), appending hydrogen (H), and inserting water molecules (H2O) based on the anhydrous supercell of [Hamid's mineral 11- &alpha tobermorites](https://doi.org/10.1524/zkri.1981.154.3-4.189). 
+
+h<sub>&alpha;</sub>(x) = &theta;<sub>o</sub> x + &theta;<sub>1</sub>x
 
 [Yuan Chiang (CY)](https://www.linkedin.com/in/yuanchiang) Mar/2019 @ NTUCE
 
