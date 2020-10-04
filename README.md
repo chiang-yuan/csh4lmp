@@ -65,7 +65,7 @@ syntax | definition
 ------ | ----------
 typeSi | silicon type
 \# | removal number of silicate units
-\alpha | vacancy ratio of bridging tetrahedra (BT) to pairing tetrahedra (PT)
+&alpha; | vacancy ratio of bridging tetrahedra (BT) to pairing tetrahedra (PT)
 
 Effect of BT/PT removal ratio on the silicate connectivity indicated through Qn factors
 ![BT/PT](/image/1.57.jpg)
