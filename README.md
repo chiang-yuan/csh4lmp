@@ -1,13 +1,9 @@
 # csh4lmp
-## Introduction
-Calcium-silicate-hydrates (C-S-H) is the main binding materials in the cement hydrates. To dates, its atomistic configuration remains uncertain and is under extensive discussion. [Nat. Comm.](https://doi.org/10.1038/ncomms5960) [ACS. JPCC.](https://doi.org/10.1021/acs.jpcc.7b02439) However, a straightforward model construction method is still absent and lack of a handy tool to build the atomic model of C-S-H with the tailored compositions. __csh4lmp__ realized the direct modeling through removing silciate units (SiO2), appending hydrogen (H), and inserting water molecules (H2O) based on the anhydrous supercell of mineral tobermorites. This code fulfil the gap between the stoichimetry, defects distribution and topological relationship in the atomic scale.
+Calcium-silicate-hydrates (C-S-H) is the main binding materials in the cement hydrates. To date, its atomistic configuration remains uncertain and under extensive discussion. [Nat. Comm.](https://doi.org/10.1038/ncomms5960) [ACS. JPCC.](https://doi.org/10.1021/acs.jpcc.7b02439) A straightforward model construction method is still absent and lack a handy tool to build the full atomistic C-S-H with tailored compositions. __csh4lmp__ realized the atomic structure modification through removing silciate monoxdide (SiO), appending hydrogen (H), and inserting water molecules (H2O) based on the anhydrous supercell of [Hamid's](https://doi.org/10.1524/zkri.1981.154.3-4.189) mineral 11-&#8491; tobermorites. 
 
 [Yuan Chiang (CY)](https://www.linkedin.com/in/yuanchiang) Mar/2019 @ NTUCE
 
 ![relaxation](/example/relaxation.gif)
-
-![removal regime](/image/removal.jpg)
-This figure shows how to achieve higer Ca/Si ratio through removing silicate units. The atoms in gray color are removed in neutral SiO2 groups including one silicon atom and two oxgygen atoms. Additional hydrogen atoms are appneded to the undercoordinated oxygen atoms. One appended hydrogen atom and one oxygen atom are bonded together and become a hydroxyl group where the oxygen atom turns into a hydroxyl oxygen atom. 
 
 ## Nomenclature and Color Convention
 
@@ -102,7 +98,7 @@ syntax | definition
 type | bond type of bonds to be deleted
 - __change box__ :
 ```
-	-c boundary [pbcx] [pbc] [pbcz]                 
+	-c boundary [pbcx] [pbcy] [pbcz]                 
 ```
 syntax | definition
 ------ | ----------
