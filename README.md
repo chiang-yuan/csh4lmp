@@ -1,5 +1,5 @@
 # csh4lmp
-Calcium-silicate-hydrates (C-S-H) is the main binding materials in the cement hydrates. To date, its atomistic configuration remains uncertain and under extensive discussion. [Nat. Comm.](https://doi.org/10.1038/ncomms5960) [ACS. JPCC.](https://doi.org/10.1021/acs.jpcc.7b02439) A straightforward model construction method is still absent and lack a handy tool to build the full atomistic C-S-H with tailored compositions. __csh4lmp__ realized the atomic structure modification through removing silciate monoxdide (SiO), appending hydrogen (H), and inserting water molecules (H2O) based on the anhydrous supercell of [Hamid's](https://doi.org/10.1524/zkri.1981.154.3-4.189) mineral 11-&#8491; tobermorites. 
+Calcium-silicate-hydrates (C-S-H) is the main binding materials in the cement hydrates. To date, its atomistic configuration remains a conundrum and under extensive discussion. [(Qomo *et al.* Nat. Comm.)](https://doi.org/10.1038/ncomms5960) [(Kumar *et al.* ACS. JPCC.)](https://doi.org/10.1021/acs.jpcc.7b02439) The understanding of nanoscale silicate tetrahedral vacancies in C-S-H polymorphs is absent from previous literature and lack a handy tool to build the full atomistic model of C-S-H with tailored compositions. __csh4lmp__ realizes atomic structure modification through removing silciate monoxdide (SiO), appending hydrogen (H), and inserting water molecules (H<sub>2</sub>O) based on the anhydrous supercell of [Hamid's](https://doi.org/10.1524/zkri.1981.154.3-4.189) mineral 11-&#8491; tobermorites. 
 
 [Yuan Chiang (CY)](https://yaunchaing.netlify.app) Mar/2019 @ NTUCE
 
@@ -57,7 +57,7 @@ syntax | definition
 typeO | removed oxygen type in water molecules
 typeH | removed hydrogen type in water molecules
 
-- __remove SiO2__ : remove multiple silicate units from current models
+- __remove SiO__ : remove a number of silicate monoxide 
 ```
 	-s number [typeSi] [#] [BT/PT ratio]
 ```
