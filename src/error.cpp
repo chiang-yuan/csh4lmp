@@ -52,7 +52,6 @@ int Error::message(const char * message_, int exitcode_)
 	if (mode != silent) printf("ERROR: %s\n", message_);
 
 	if (level == stop) {
-		system("pause");
 		exit(exitcode_);
 	}
 	return exitcode_;
@@ -65,7 +64,6 @@ int Error::message(const char * message_, int exitcode_, const char* str)
 	if (mode != silent) printf("ERROR: %s\n", buffer);
 	
 	if (level == stop) {
-		system("pause");
 		exit(exitcode_);
 	}
 	return exitcode_;

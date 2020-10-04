@@ -590,12 +590,12 @@ int ModifySiO2::randomly_remove_SiO2(System & sys, int typeSi_, int num_, double
 	if (cs < 0 || num_ < 0) error->message("Enter incorrect removal number: %s", 1, std::to_string(num_).c_str());
 	double bp = rbp_;
 
-	FILE* nmr = fopen("NMR.txt", "a");
+	//FILE* nmr = fopen("RelAbd.txt", "a");
 	printf("\n\tCa/Si = %4.2f | alpha = %4.2f | BT: %4.2f | PT: %4.2f\n\n", cs, bp, bp / (1.0 + bp), 1.0 / (1.0 + bp));
-	fprintf(nmr,"%4.2f\t%4.2f", cs, bp);
+	/*fprintf(nmr,"%4.2f\t%4.2f", cs, bp);*/
 
 	int num_del = 0;
-	while (num_del < num_*bp / (1.0 + bp) && group_BT_Si.size() > 0) {
+	while (num_del <= num_* bp / (1.0 + bp) && group_BT_Si.size() > 0) {
 		int idel = rand() % group_BT_Si.size();
 		Atom* delSi = &*group_BT_Si[idel];
 
@@ -618,7 +618,7 @@ int ModifySiO2::randomly_remove_SiO2(System & sys, int typeSi_, int num_, double
 
 		// Mode 1 : delete one BO oxygen and one NBO oxygen		
 
-		if (bo.size() == 0 || nbo.size() == 0) {
+		if (nbo.size() == 0) {
 			group_BT_Si.erase(group_BT_Si.begin() + idel);
 			continue;
 		}
@@ -657,74 +657,184 @@ int ModifySiO2::randomly_remove_SiO2(System & sys, int typeSi_, int num_, double
 	int num_del_BT = num_del;
 	printf("\t\tRandomly remove %4d BT\n", num_del_BT);
 	
-	while (num_del < num_ && group_PT_Si.size() > 0) {
+	while (num_del <= num_ && group_PT_Si.size() > 0) {
+		
 		int idel = rand() % group_PT_Si.size();
 		Atom* delSi = &*group_PT_Si[idel];
+
+		if (delSi->delete_flag == true) {
+			group_PT_Si.erase(group_PT_Si.begin() + idel);
+			continue;
+		}
+
+		/* declare pointers for bridging oxygen and connected silicon */
+		
+		Atom* bondSi = nullptr;
+
+		int delSi_Q = 0;
+		int bondSi_Q = 0;
 
 		std::vector<Atom*> bo;
 		std::vector<Atom*> nbo;
 		for (int i = 0; i < delSi->bondNum; i++) {
-			if (*delSi->bonds[i]->ij[0] != *delSi) {
-				if (delSi->bonds[i]->ij[0]->bondNum == 1 && delSi->bonds[i]->ij[0]->delete_flag == false)
+			Atom* bondOb = nullptr;
+			if (*(delSi->bonds[i]->ij[0]) != *delSi) {
+				if (delSi->bonds[i]->ij[0]->bondNum == 1 && delSi->bonds[i]->ij[0]->delete_flag == false) 
 					nbo.push_back(&*(delSi->bonds[i]->ij[0]));
-				else if (delSi->bonds[i]->ij[0]->bondNum == 2 && delSi->bonds[i]->ij[0]->delete_flag == false)
+				else if (delSi->bonds[i]->ij[0]->bondNum == 2 && delSi->bonds[i]->ij[0]->delete_flag == false && delSi->bonds[i]->ij[0] != nullptr) {
 					bo.push_back(&*(delSi->bonds[i]->ij[0]));
+					bondOb = delSi->bonds[i]->ij[0];
+				}
 			}
-			else if (*delSi->bonds[i]->ij[1] != *delSi) {
+			else if (*(delSi->bonds[i]->ij[1]) != *delSi) {
 				if (delSi->bonds[i]->ij[1]->bondNum == 1 && delSi->bonds[i]->ij[1]->delete_flag == false)
 					nbo.push_back(&*(delSi->bonds[i]->ij[1]));
-				else if ((*delSi).bonds[i]->ij[1]->bondNum == 2 && delSi->bonds[i]->ij[1]->delete_flag == false)
+				else if (delSi->bonds[i]->ij[1]->bondNum == 2 && delSi->bonds[i]->ij[1]->delete_flag == false && delSi->bonds[i]->ij[1] != nullptr) {
 					bo.push_back(&*(delSi->bonds[i]->ij[1]));
+					bondOb = delSi->bonds[i]->ij[1];
+				}		
+			}
+
+			/* calculate tetrahedral connectivity */
+			if (bondOb != nullptr && bondOb->bondNum == 2) {
+				for (int j = 0; j < bondOb->bondNum; j++) {
+					if ((*(bondOb->bonds[j]->ij[0]) != *bondOb) && 
+						(bondOb->bonds[j]->ij[0]->type == typeSi_) && (*(bondOb->bonds[j]->ij[0]) != *delSi) &&
+						(bondOb->bonds[j]->ij[0]->delete_flag == false)) {
+						bondSi = bondOb->bonds[j]->ij[0];
+						delSi_Q++;
+						//printf("type: %d %d\t", bondOb->bonds[j]->ij[0]->type, typeSi_);
+						//printf("%lld - %lld - %lld\n", delSi->id, bondOb->id, bondSi->id);
+						break;
+					}
+					else if ((*(bondOb->bonds[j]->ij[1]) != *bondOb) && 
+						(bondOb->bonds[j]->ij[1]->type == typeSi_) && (*(bondOb->bonds[j]->ij[1]) != *delSi) &&
+						(bondOb->bonds[j]->ij[1]->delete_flag == false)) {
+						bondSi = bondOb->bonds[j]->ij[1];
+						delSi_Q++;
+						//printf("type: %d %d\t", bondOb->bonds[j]->ij[1]->type, typeSi_);
+						//printf("%lld - %lld - %lld\n", delSi->id, bondOb->id, bondSi->id);
+						break;
+					}
+				}
+				
 			}
 		}
-
-		// Mode 1 : delete one bo oxygen and one nbo oxygen
-
-		
-		
-		if (bo.size() == 0 || nbo.size() == 0) {
+		//printf("1: delSi_Q: %d\tbondSi_Q: %d\n", delSi_Q, bondSi_Q);
+		/* check if target silicon is Q0 or Q1 species */
+		if (delSi_Q > 1 || nbo.size() == 0) {
 			group_PT_Si.erase(group_PT_Si.begin() + idel);
+			//printf("Q2  : delSi_Q: %d \t bondsi_Q: %d / %d\n", delSi_Q, bondSi_Q, group_PT_Si.size());
 			continue;
 		}
+		else {
+			if (bondSi != nullptr) {
+				for (int i = 0; i < bondSi->bondNum; i++) {
+					Atom* bondOb = (*(bondSi->bonds[i]->ij[0]) != *bondSi) ? &*(bondSi->bonds[i]->ij[0]) : &*(bondSi->bonds[i]->ij[1]);
 
-		//bo[rand() % bo.size()]->delete_flag = true;
-		nbo[rand() % nbo.size()]->delete_flag = true;
-		
-		
+					if (bondOb != nullptr && bondOb->bondNum == 2) {
+						for (int j = 0; j < bondOb->bondNum; j++) {
+							if (bondOb->bonds[j]->ij[0]->type == typeSi_ && *(bondOb->bonds[j]->ij[0]) != *bondSi && bondOb->bonds[j]->ij[0]->delete_flag == false) {
+								bondSi_Q++;
+								break;
+							}
+							else if (bondOb->bonds[j]->ij[1]->type == typeSi_ && *(bondOb->bonds[j]->ij[1]) != *bondSi && bondOb->bonds[j]->ij[1]->delete_flag == false) {
+								bondSi_Q++;
+								break;
+							}
+								
+						}
 
-		// Mode 2 : delete two nbo oxygen
-
-		/*
+					}
+				}
+			}
+		}
 		
-		if (nbo.size() != 2) {
+		//printf("2: delSi_Q: %d \t bondsi_Q: %d\n", delSi_Q, bondSi_Q);
+
+		
+		/* check if connected silicon is Q1 species */
+		if (delSi_Q == 0) {
+			nbo[rand() % nbo.size()]->delete_flag = true;
+			bo.clear();
+			nbo.clear();
+
+			(*delSi).delete_flag = true;
 			group_PT_Si.erase(group_PT_Si.begin() + idel);
+
+			num_del++;
+
+			//printf("Q0  : delSi_Q: %d \t bondsi_Q: %d / %d\n", delSi_Q, bondSi_Q, group_PT_Si.size());
+			continue;
+		}
+		else if (bondSi_Q > 1) {
+			group_PT_Si.erase(group_PT_Si.begin() + idel);
+			//printf("Q1Q2: delSi_Q: %d \t bondsi_Q: %d / %d\n", delSi_Q, bondSi_Q, group_PT_Si.size());
+			continue;
+		}
+		else if (delSi_Q == 1 && bondSi_Q == 1 && rand() % 1000 < 990) {
+			
+			std::vector<Atom*> nbo_;
+			for (int i = 0; i < bondSi->bondNum; i++) {
+				if (*bondSi->bonds[i]->ij[0] != *bondSi) {
+					if (bondSi->bonds[i]->ij[0]->bondNum == 1 && bondSi->bonds[i]->ij[0]->delete_flag == false)
+						nbo_.push_back(&*(delSi->bonds[i]->ij[0]));
+				}
+				else if (*bondSi->bonds[i]->ij[1] != *bondSi) {
+					if (bondSi->bonds[i]->ij[1]->bondNum == 1 && bondSi->bonds[i]->ij[1]->delete_flag == false)
+						nbo_.push_back(&*(delSi->bonds[i]->ij[1]));
+				}
+			}
+
+			if (std::find(group_PT_Si.begin(), group_PT_Si.end(), bondSi) != group_PT_Si.end()) {
+				/* delete connected Q1 PT */
+				std::vector<Atom*>::iterator pos = std::find(group_PT_Si.begin(), group_PT_Si.end(), bondSi);
+				nbo_[rand() % nbo_.size()]->delete_flag = true;
+				nbo_.clear();
+				(*bondSi).delete_flag = true;
+				group_PT_Si.erase(pos);
+				num_del++;
+
+				nbo[rand() % nbo.size()]->delete_flag = true;
+				bo.clear();
+				nbo.clear();
+				(*delSi).delete_flag = true;
+				group_PT_Si.erase(group_PT_Si.begin() + idel);
+				num_del++;
+
+				//printf("2Q1 : delSi_Q: %d \t bondsi_Q: %d / %d\n", delSi_Q, bondSi_Q, group_PT_Si.size());
+				continue;
+			}
+			else { 
+				continue; 
+			}
+		}
+		else{
+			nbo[rand() % nbo.size()]->delete_flag = true;
+			bo.clear();
+			nbo.clear();
+
+			(*delSi).delete_flag = true;
+			group_PT_Si.erase(group_PT_Si.begin() + idel);
+
+			num_del++;
+
+			//printf("1Q1 : delSi_Q: %d \t bondsi_Q: %d / %d\n", delSi_Q, bondSi_Q, group_PT_Si.size());
 			continue;
 		}
 		
-		nbo[0]->delete_flag = true;
-		nbo[1]->delete_flag = true;
-
-		*/
-
-		//
-
-		bo.clear();
-		nbo.clear();
-
-		(*delSi).delete_flag = true;
-		group_PT_Si.erase(group_PT_Si.begin() + idel);
-		
-		num_del++;
 	}
 
-	printf("\t\tRandomly remove %4d PT\n", num_ - num_del_BT);
-
-	if (num_del < num_) error->warning("The cutting number of SiO2 exceeds the existent number", 2);
+	printf("\t\tRandomly remove %4d PT\n", num_del - num_del_BT);
+	
+	if (num_del < num_) error->message("The cutting number exceeds the available number", 2);
 
 	delete_atoms(sys);
 	delete_bonds(sys);
 	
 	// NMR Analysis
+	FILE* nmr = fopen("RelAbd.txt", "a");
+	fprintf(nmr,"%4.2f\t%4.2f\t", cs, bp);
 	NMR(sys, typeSi_);
 
 	return 0;
@@ -829,20 +939,22 @@ int ModifySiO2::NMR(System & sys, int type_)
 		error->warning("Unreasonable mean chain length exceeds lower bound: %s\n", 1, std::to_string(lower).c_str());
 
 
-	FILE* nmr = fopen("NMR.txt", "a");
-	fprintf(nmr, "\t%6.3f\t%6.3f\t%6.3f\t%4.2f\n",
-		Q[0] / (Q[0] + Q[1] + Q[2]),
-		Q[1] / (Q[0] + Q[1] + Q[2]),
-		Q[2] / (Q[0] + Q[1] + Q[2]),
+	FILE* nmr = fopen("RelAbd.txt", "a");
+	fprintf(nmr, "%4.2f\t%6.3f\t%6.3f\t%6.3f\t%6.3f\t%4.2f\n",
+		cs,
+		Qbp[0] / (Qbp[0] + Qbp[1] + Qbp[2] + Qbp[3]),
+		Qbp[1] / (Qbp[0] + Qbp[1] + Qbp[2] + Qbp[3]),
+		Qbp[2] / (Qbp[0] + Qbp[1] + Qbp[2] + Qbp[3]),
+		Qbp[3] / (Qbp[0] + Qbp[1] + Qbp[2] + Qbp[3]),
 		mcl);
 
-	FILE* q12bp = fopen("RelAbd.txt", "a");
+	/*FILE* q12bp = fopen("RelAbd.txt", "a");
 	fprintf(q12bp, "%4.2f\t%6.3f\t%6.3f\t%6.3f\t%6.3f\n", 
 		cs, 
 		Qbp[0] / (Qbp[0] + Qbp[1] + Qbp[2] + Qbp[3]), 
 		Qbp[1] / (Qbp[0] + Qbp[1] + Qbp[2] + Qbp[3]),
 		Qbp[2] / (Qbp[0] + Qbp[1] + Qbp[2] + Qbp[3]),
-		Qbp[3] / (Qbp[0] + Qbp[1] + Qbp[2] + Qbp[3]));
+		Qbp[3] / (Qbp[0] + Qbp[1] + Qbp[2] + Qbp[3]));*/
 
 
 	return 0;

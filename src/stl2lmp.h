@@ -7,7 +7,7 @@
 #ifndef STL2LMP_H
 #define STL2LMP_H
 
-#define STL2LMP_VERSION "v6.2 / 15 Feb 2020"
+#define STL2LMP_VERSION "v6.0 / 4 Oct 2020"
 
 #define WHITESPACE " \t\r\n\f"
 

@@ -9,8 +9,9 @@
  *
  *	DEPENDENCY
  *
- *  Copyright version 5.6 (15/May/2019) Chiang Yuan
+ *  Copyright version 6.0 (4/Oct/2020) Chiang Yuan
  *
+ *		v_6.0	|	support dreierketten rule
  *		v_5.6	|	add 29Si NMR check
  *		v_5.4	|	adjust initialization
  *		v_5.3	|	adjust topology & charge balnce
