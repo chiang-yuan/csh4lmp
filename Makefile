@@ -1,13 +1,11 @@
-CC		= 	gcc
-CFLAGS	= 	-g -Wall -O3
+CC		= 	g++
+CFLAGS		= 	-g -Wall
 
-TARGET	=	csh4lmp.exe
+TARGET		=	csh4lmp
 
-SRCS	= 	csh4lmp.cpp \
-			error.cpp \
-			system.cpp read_data.cpp write_data.cpp modify.cpp modify_h2o.cpp change_box.cpp \
-			atom.cpp bond.cpp angle.cpp \
-			affine_transform.cpp
+SRC_DIRS	?=	./src
+
+SRCS 	:=	$(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s)
 
 OBJS	= 	$(SRCS:.c=.o)
 
@@ -29,7 +27,7 @@ $(TARGET) : $(OBJS)
 .PHONY: clean
 
 clean:
-		rm -f $(OBJS) $(TARGET)
+		rm -f $(TARGET) $(patsubst %,$(SRCDIR)/%.o,$(basename $(SRC)))
 
 depend: $(SRCS)
 		makedepend $(INC) $^
