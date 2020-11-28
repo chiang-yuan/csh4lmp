@@ -27,7 +27,7 @@ $(TARGET) : $(OBJS)
 .PHONY: clean
 
 clean:
-		rm -f $(TARGET) $(patsubst %,$(SRCDIR)/%.o,$(basename $(SRC)))
+		rm -f $(TARGET) $(patsubst %,$(SRC_DIRS)/%.o,$(basename $(SRC)))
 
 depend: $(SRCS)
 		makedepend $(INC) $^
