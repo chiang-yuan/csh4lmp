@@ -6,7 +6,7 @@ A computational modeling tool for full atomistic modeling of calcium-silicate-hy
 
 Calcium-silicate-hydrates (C-S-H) is the main binding materials in the cement hydrates. To date, its atomistic configuration remains a conundrum and under extensive discussion. [(Qomi *et al.* Nat. Comm.)](https://doi.org/10.1038/ncomms5960) [(Kumar *et al.* ACS. JPCC.)](https://doi.org/10.1021/acs.jpcc.7b02439) The understanding of nanoscale silicate tetrahedral vacancies in C-S-H polymorphs is absent from previous literature and lack a handy tool to build the full atomistic model of C-S-H with tailored compositions. __csh4lmp__ realizes atomic structure modification through removing silciate monoxdide (SiO), appending hydrogen (H), and inserting water molecules (H<sub>2</sub>O) based on the anhydrous supercell of [Hamid's](https://doi.org/10.1524/zkri.1981.154.3-4.189) mineral 11-&#8491; tobermorites. 
 
-[Yuan Chiang (CY)](https://yaunchiang.netlify.app) Mar/2019 @ NTUCE
+[Yuan Chiang (CY)](https://yuanchiang.netlify.app) Mar/2019 @ NTUCE
 
 ![relaxation](/example/relaxation.gif)
 
