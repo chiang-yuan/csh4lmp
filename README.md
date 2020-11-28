@@ -14,7 +14,7 @@ Calcium-silicate-hydrates (C-S-H) is the main binding materials in the cement hy
 
 If you use this code in your work, please cite the associated paper:
 ```
-Chiang, Y., & Chang, S. W. Bridging the gap between NMR measured mean silicate chain length and nano-scale silicate polymorphism of calcium silicate hydrates. Cement and Concrete Research, 140, 106268. [https://doi.org/10.1016/j.cemconres.2020.106268](https://doi.org/10.1016/j.cemconres.2020.106268)
+Chiang, Y., & Chang, S. W. Bridging the gap between NMR measured mean silicate chain length and nano-scale silicate polymorphism of calcium silicate hydrates. Cement and Concrete Research, 140, 106268.
 ```
 Or cite by BibTex:
 ```
@@ -45,7 +45,7 @@ Or cite by BibTex:
 
 # Build
 
-```
+```make
 make -f Makefile
 ```
 
