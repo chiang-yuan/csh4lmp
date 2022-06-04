@@ -17,7 +17,7 @@ If you use this code in your work, please cite the associated paper:
 Chiang, Y., & Chang, S. W. Bridging the gap between NMR measured mean silicate chain length and nano-scale silicate polymorphism of calcium silicate hydrates. Cement and Concrete Research, 140, 106268.
 ```
 Or cite by BibTex:
-```
+```BibTex
 @article{chiang140bridging,
   title={Bridging the gap between NMR measured mean silicate chain length and nano-scale silicate polymorphism of calcium silicate hydrates},
   author={Chiang, Yuan and Chang, Shu-Wei},
