@@ -12,7 +12,7 @@ Calcium-silicate-hydrates (C-S-H) is the main binding materials in the cement hy
 
 ## Citing
 
-If you happen to use/adapt this **code** or **the provided example C-S-H structures**, please cite the associated paper:
+If you happen to use/adapt this **code** or **the example C-S-H structures provided in this repo**, please cite the associated paper:
 ```
 Chiang, Y., & Chang, S. W. Bridging the gap between NMR measured mean silicate chain length and nano-scale silicate polymorphism of calcium silicate hydrates. Cement and Concrete Research, 140, 106268.
 ```
