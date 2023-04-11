@@ -1,18 +1,18 @@
 # csh4lmp
 
-A computational modeling tool for full atomistic modeling of calcium-silicate-hydrates used in the paper "[Bridging the gap between NMR measured mean silicate chain length and nano-scale silicate polymorphism of calcium silicate hydrates.](https://doi.org/10.1016/j.cemconres.2020.106268)," Yuan Chiang, Shu-Wei Chang, Cement and Concrete Research, 140, 106268. 
+A C++ modeling tool for full atomistic modeling of calcium-silicate-hydrates used in the paper "[Bridging the gap between NMR measured mean silicate chain length and nano-scale silicate polymorphism of calcium silicate hydrates.](https://doi.org/10.1016/j.cemconres.2020.106268)," Yuan Chiang, Shu-Wei Chang, Cement and Concrete Research, 140, 106268. 
 
 ![CSH](https://ars.els-cdn.com/content/image/1-s2.0-S0008884620315489-gr1_lrg.jpg)
 
 Calcium-silicate-hydrates (C-S-H) is the main binding materials in the cement hydrates. To date, its atomistic configuration remains a conundrum and under extensive discussion. [(Qomi *et al.* Nat. Comm.)](https://doi.org/10.1038/ncomms5960) [(Kumar *et al.* ACS. JPCC.)](https://doi.org/10.1021/acs.jpcc.7b02439) The understanding of nanoscale silicate tetrahedral vacancies in C-S-H polymorphs is absent from previous literature and lack a handy tool to build the full atomistic model of C-S-H with tailored compositions. __csh4lmp__ realizes atomic structure modification through removing silciate monoxdide (SiO), appending hydrogen (H), and inserting water molecules (H<sub>2</sub>O) based on the anhydrous supercell of [Hamid's](https://doi.org/10.1524/zkri.1981.154.3-4.189) mineral 11-&#8491; tobermorites. 
 
-[Yuan Chiang (CY)](https://yuanchiang.netlify.app) Mar/2019 @ NTUCE
+[Yuan Chiang](https://chiang-yuan.github.io) Mar/2019 @ NTUCE
 
 ![relaxation](/example/relaxation.gif)
 
 ## Citing
 
-If you use this code in your work, please cite the associated paper:
+If you happen to use/adapt this **code** or **the provided example C-S-H structures**, please cite the associated paper:
 ```
 Chiang, Y., & Chang, S. W. Bridging the gap between NMR measured mean silicate chain length and nano-scale silicate polymorphism of calcium silicate hydrates. Cement and Concrete Research, 140, 106268.
 ```
@@ -124,6 +124,6 @@ syntax | definition
 ------ | ----------
 pbcx pbcy pbcz | periodic boundary condition in x y z direction = p (periodic), f (non-periodic)
 
-This command will reset and make the image flag consistent and traslate the atoms whose bonds across boundary
+This command will reset and make the image flag consistent and traslate the atoms whose bonds cross the boundary
 # License
 MIT
